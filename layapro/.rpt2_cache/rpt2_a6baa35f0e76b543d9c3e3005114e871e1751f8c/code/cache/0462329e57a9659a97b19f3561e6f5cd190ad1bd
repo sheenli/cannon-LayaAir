@@ -1,7 +1,0 @@
-{
-  "code": "import { GameMgr } from \"./YK/ctrl/GameMgr\";\r\nimport { GameObjectInfo } from \"./YK/YK\";\r\nexport class GameMain {\r\n    constructor() {\r\n        Laya.loader.create([\"res/unitylib/Conventional/SampleScene.ls\", \"res/unitylib/Conventional/SampleScene.json\"], Laya.Handler.create(this, (a) => {\r\n            let scene = Laya.loader.getRes(\"res/unitylib/Conventional/SampleScene.ls\");\r\n            Laya.stage.addChild(scene);\r\n            this.Plane = scene.getChildByName(\"Plane\");\r\n            this.Cube = scene.getChildByName(\"Cube\");\r\n            this.init();\r\n            let goInfo = new GameObjectInfo();\r\n            goInfo.name = scene.name;\r\n            goInfo.childs = Laya.loader.getRes(\"res/unitylib/Conventional/SampleScene.json\").objInfos;\r\n            GameMgr.Inst.comMgr.initComs(scene, goInfo);\r\n        }));\r\n    }\r\n    init() {\r\n    }\r\n}\r\n",
-  "references": [
-    "G:/tst/test2/src/YK/ctrl/GameMgr.ts",
-    "G:/tst/test2/src/YK/YK.ts"
-  ]
-}

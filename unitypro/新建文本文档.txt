@@ -1,8 +1,0 @@
-layapro/.rpt2_cache/
-layapro/release/
-unitypro/.idea/
-unitypro/Library/
-unitypro/Logs/
-unitypro/obj/
-unitypro/temp/
-*.sln

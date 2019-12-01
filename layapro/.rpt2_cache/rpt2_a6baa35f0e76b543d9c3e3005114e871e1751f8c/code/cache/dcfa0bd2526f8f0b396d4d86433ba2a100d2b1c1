@@ -1,4 +1,0 @@
-{
-  "code": "export class GameObjectInfo {\r\n    constructor() {\r\n        this.coms = new Array();\r\n        this.childs = new Array();\r\n    }\r\n}\r\nexport class ComInfo {\r\n}\r\n",
-  "references": []
-}

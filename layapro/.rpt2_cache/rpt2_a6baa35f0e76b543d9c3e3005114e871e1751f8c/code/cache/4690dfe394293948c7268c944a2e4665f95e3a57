@@ -1,8 +1,0 @@
-{
-  "code": "export * from './coms/physical/Body';\r\nexport * from './ctrl/ComMgr';\r\nexport * from \"./coms/GamObjectInfo\";\r\n",
-  "references": [
-    "G:/tst/test2/src/YK/coms/physical/Body.ts",
-    "G:/tst/test2/src/YK/ctrl/ComMgr.ts",
-    "G:/tst/test2/src/YK/coms/GamObjectInfo.ts"
-  ]
-}
