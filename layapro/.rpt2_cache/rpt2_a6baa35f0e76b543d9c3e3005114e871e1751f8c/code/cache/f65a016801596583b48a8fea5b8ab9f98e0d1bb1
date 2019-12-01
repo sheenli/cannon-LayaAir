@@ -1,0 +1,4 @@
+{
+  "code": "export class GameUtils {\r\n    static layaV32CannonV3(pos) {\r\n        return new CANNON.Vec3(pos.x, pos.y, pos.z);\r\n    }\r\n    static layaQuaternion2CanQuaternion(q) {\r\n        return new CANNON.Quaternion(q.x, q.y, q.z, q.w);\r\n    }\r\n    static SetV3(pos1, pos2) {\r\n        pos1.x = pos2.x;\r\n        pos1.y = pos2.y;\r\n        pos1.z = pos2.z;\r\n    }\r\n    static SetV4(q1, q2) {\r\n        q1.x = q2.x;\r\n        q1.y = q2.y;\r\n        q1.z = q2.z;\r\n        q1.w = q2.w;\r\n    }\r\n}\r\n",
+  "references": []
+}

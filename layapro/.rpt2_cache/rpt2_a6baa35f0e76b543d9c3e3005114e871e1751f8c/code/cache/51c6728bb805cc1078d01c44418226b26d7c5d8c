@@ -1,0 +1,7 @@
+{
+  "code": "import { GameMain } from \"../../GameMain\";\r\nimport { ComMgr } from \"./ComMgr\";\r\nexport class GameMgr {\r\n    constructor() {\r\n        this.fixedTimeStep = 1.0 / 60.0;\r\n        this.maxSubSteps = 3;\r\n        GameMgr.mInst = this;\r\n    }\r\n    static get Inst() {\r\n        if (this.mInst == null)\r\n            new GameMgr();\r\n        return this.mInst;\r\n    }\r\n    init() {\r\n        this.comMgr = new ComMgr();\r\n        Laya.timer.frameLoop(1, this, this.update, null, true);\r\n        this.world = new CANNON.World();\r\n        this.world.gravity.set(0, -0.982, 0);\r\n        this.world.broadphase = new CANNON.NaiveBroadphase();\r\n        Laya.timer.frameLoop(1, this, this.update, null, true);\r\n        new GameMain();\r\n    }\r\n    update() {\r\n        this.world.step(this.fixedTimeStep, Laya.timer.delta, this.maxSubSteps);\r\n    }\r\n}\r\n",
+  "references": [
+    "G:/tst/test2/src/GameMain.ts",
+    "G:/tst/test2/src/YK/ctrl/ComMgr.ts"
+  ]
+}

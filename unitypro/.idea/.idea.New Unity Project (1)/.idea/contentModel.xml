@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Administrator\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Administrator\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_New Unity Project (1).1235114149.00" t="ExcludeRecursive" />
+    <e p="H:\github\New Unity Project (1)" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="CannonPhysical" t="Include">
+          <e p="Coms" t="Include">
+            <e p="Body.cs" t="Include" />
+          </e>
+          <e p="Editor" t="Include">
+            <e p="CustomExport.cs" t="Include" />
+            <e p="CustomExportCom.cs" t="Include" />
+          </e>
+          <e p="Export.cs" t="Include" />
+          <e p="IComExprot.cs" t="Include" />
+        </e>
+        <e p="LayaAir3D" t="Include">
+          <e p="LayaShader" t="Include">
+            <e p="CGIncludes" t="Include">
+              <e p="LayaBlinnPhongFA.cginc" t="Include" />
+              <e p="LayaBlinnPhongFB.cginc" t="Include" />
+              <e p="LayaPBRSpecularFA.cginc" t="Include" />
+              <e p="LayaPBRSpecularFB.cginc" t="Include" />
+              <e p="LayaPBRStandardFA.cginc" t="Include" />
+              <e p="LayaPBRStandardFB.cginc" t="Include" />
+              <e p="libs" t="Include">
+                <e p="LayaBRDF.cginc" t="Include" />
+                <e p="LayaPBRSpecularLighting.cginc" t="Include" />
+                <e p="LayaPBRStandardLighting.cginc" t="Include" />
+                <e p="LayaUtil.cginc" t="Include" />
+              </e>
+            </e>
+            <e p="LayaShader" t="Include">
+              <e p="LayaBlinnPhong.shader" t="Include" />
+              <e p="LayaLine.shader" t="Include" />
+              <e p="LayaMeshEffect.shader" t="Include" />
+              <e p="LayaPBRSpecular.shader" t="Include" />
+              <e p="LayaPBRStandard.shader" t="Include" />
+              <e p="LayaShuriKenParticle.shader" t="Include" />
+              <e p="LayaTrail.shader" t="Include" />
+              <e p="LayaUnlit.shader" t="Include" />
+              <e p="Sky" t="Include">
+                <e p="LayaSkybox-Cubed.shader" t="Include" />
+                <e p="LayaSkybox-Procedural.shader" t="Include" />
+              </e>
+              <e p="water" t="Include">
+                <e p="Water (Primary).shader" t="Include" />
+              </e>
+            </e>
+            <e p="ShaderGUI" t="Include">
+              <e p="LayaBlinnPhongGUI.cs" t="Include" />
+              <e p="LayaEffectGUI.cs" t="Include" />
+              <e p="LayaPBRSpecularGUI.cs" t="Include" />
+              <e p="LayaPBRStandardGUI.cs" t="Include" />
+              <e p="LayaSkyboxProceduralShaderGUI.cs" t="Include" />
+              <e p="LayaUnlitGUI.cs" t="Include" />
+            </e>
+          </e>
+          <e p="LayaTool" t="Include">
+            <e p="Chinese.xml" t="Include" />
+            <e p="Configuration.xml" t="Include" />
+            <e p="English.xml" t="Include" />
+            <e p="Util" t="Include">
+              <e p="EditorCoroutineExtensions.cs" t="Include" />
+              <e p="EditorCoroutines.cs" t="Include" />
+              <e p="FileUtil.cs" t="Include" />
+              <e p="HalfFloatUtils.cs" t="Include" />
+              <e p="JSONObject.cs" t="Include" />
+              <e p="MathUtil.cs" t="Include" />
+              <e p="TextureUtil.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="New Unity Project (1).sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>

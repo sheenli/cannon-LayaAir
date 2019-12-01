@@ -1,0 +1,40 @@
+{
+    "objInfos": [
+        {
+            "name": "Directional Light",
+            "coms": [],
+            "childs": []
+        },
+        {
+            "name": "GameObject",
+            "coms": [],
+            "childs": [
+                {
+                    "name": "Cube",
+                    "coms": [
+                        {
+                            "name": "YK.Body",
+                            "data": "{\"mass\":1.0,\"type\":1,\"linearDamping\":0.0,\"constraints\":0,\"shapes\":[\"{\\\"type\\\":4,\\\"center\\\":{\\\"x\\\":0.0,\\\"y\\\":0.0,\\\"z\\\":0.0},\\\"size\\\":{\\\"x\\\":1.0,\\\"y\\\":1.0,\\\"z\\\":1.0}}\"]}"
+                        }
+                    ],
+                    "childs": []
+                }
+            ]
+        },
+        {
+            "name": "Plane",
+            "coms": [
+                {
+                    "name": "YK.Body",
+                    "data": "{\"mass\":0.0,\"type\":2,\"linearDamping\":0.0,\"constraints\":0,\"shapes\":[\"{\\\"type\\\":4,\\\"center\\\":{\\\"x\\\":0.0,\\\"y\\\":0.0,\\\"z\\\":0.0},\\\"size\\\":{\\\"x\\\":10.0,\\\"y\\\":0.009999999776482582,\\\"z\\\":10.0}}\"]}"
+                }
+            ],
+            "childs": []
+        },
+        {
+            "name": "Camera",
+            "coms": [],
+            "childs": []
+        }
+    ]
+}
