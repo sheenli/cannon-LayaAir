@@ -27,7 +27,7 @@
     <Ios>False</Ios>
     <Android>False</Android>
     <Conventional>True</Conventional>
-    <SavePath>G:/tst/test2/bin/res</SavePath>
+    <SavePath>D:/myself/UnityToLayaPlugin/layapro/bin/res</SavePath>
     <ScrollPositionY>0</ScrollPositionY>
   </config1>
   <config2>
@@ -155,5 +155,5 @@
     <ScrollPositionY>0</ScrollPositionY>
   </config5>
   <language>1</language>
-  <time>1575182333</time>
+  <time>1575378745</time>
 </LayaExportSetting>

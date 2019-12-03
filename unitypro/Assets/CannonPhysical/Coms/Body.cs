@@ -104,8 +104,8 @@ namespace LayaExport
             else
             {
                 var info = new BodyData();
-                info.type = Body.STATIC;
-                info.mass = 0;
+                info.type = Body.KINEMATIC;
+                info.mass = 1;
                 info.shapes.Add(JsonUtility.ToJson(ToData()));
                 data = JsonUtility.ToJson(info);
             }

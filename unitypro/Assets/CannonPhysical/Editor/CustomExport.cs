@@ -36,13 +36,15 @@ namespace LayaExport
             json.objInfos.Clear();
             destoryList.Clear();
             var gos = SceneManager.GetActiveScene().GetRootGameObjects();
-            foreach (var go in gos)
+            for (int i = 0; i < gos.Length; i++)
             {
+                var go = gos[i];
                 var fileName = "Assets/temps/" + go.name + ".prefab";
                 PrefabUtility.SaveAsPrefabAsset(go, fileName);
                 loweringList.Add(fileName);
                 destoryList.Add(go);
                 var info = CustomExportCom.Build(go);
+                info.instanceID = i;
                 json.objInfos.Add(info);
             }
             foreach (var go in gos)

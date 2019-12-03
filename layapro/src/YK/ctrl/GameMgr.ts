@@ -1,37 +1,27 @@
-import { GameMain } from "../../GameMain";
-import { ComMgr } from "./ComMgr";
+import {GameMain} from "../../GameMain";
+import {ComMgr} from "./ComMgr";
+import {CannonPhysicalCtrl} from "../core/CannonPhysicalCtrl";
 
 export class GameMgr {
     public comMgr: ComMgr;
+    public cannonPhysicalCtrl: CannonPhysicalCtrl;
     private static mInst: GameMgr;
-    public world: CANNON.World;
-    private fixedTimeStep = 1.0 / 60.0;
-    private maxSubSteps = 3;
+
     static get Inst() {
-        if (this.mInst == null) new GameMgr()
+        if (this.mInst == null) new GameMgr();
         return this.mInst;
     }
+
     constructor() {
         GameMgr.mInst = this;
     }
 
     init() {
-        this.comMgr = new ComMgr()
-
-        Laya.timer.frameLoop(1, this, this.update, null, true)
-
-        this.world = new CANNON.World();
-
-        this.world.gravity.set(0, -0.982, 0);
-
-        this.world.broadphase = new CANNON.NaiveBroadphase()
-
-        Laya.timer.frameLoop(1, this, this.update, null, true)
-
+        this.comMgr = new ComMgr();
+        this.cannonPhysicalCtrl = new CannonPhysicalCtrl();
+        this.cannonPhysicalCtrl.init();
         new GameMain()
     }
 
-    private update() {
-        this.world.step(this.fixedTimeStep, Laya.timer.delta, this.maxSubSteps)
-    }
+
 }

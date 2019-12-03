@@ -15,6 +15,7 @@ namespace LayaExport
         public class GameObjectInfo
         {
             public string name;
+            public int instanceID;
             public List<ComInfo> coms = new List<ComInfo>();
             public List<GameObjectInfo> childs = new List<GameObjectInfo>();
         }
@@ -39,6 +40,7 @@ namespace LayaExport
                 for (int i = 0; i < go.transform.childCount; i++)
                 {
                     var childInfo = Build(go.transform.GetChild(i).gameObject);
+                    childInfo.instanceID = i;
                     if (childInfo.coms.Count > 0)
                     {
                         goInfo.childs.Add(childInfo);

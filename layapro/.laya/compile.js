@@ -41,9 +41,10 @@ gulp.task("compile", prevTasks, function () {
 		treeshake: false, //建议忽略
 		plugins: [
 			typescript({
+				tsconfig:workSpaceDir + "/tsconfig.json",
 				check: true, //Set to false to avoid doing any diagnostic checks on the code
 				tsconfigOverride:{compilerOptions:{removeComments: true}},
-				include:"**/*.ts",
+				include:/.*.ts/,
 			}),
 			glsl({
 				// By default, everything gets included
@@ -65,5 +66,8 @@ gulp.task("compile", prevTasks, function () {
 			name: 'laya',
 			sourcemap: false
 		});
-	});
+	}).catch(err=>{
+			console.log(err);
+		
+	})
 });
