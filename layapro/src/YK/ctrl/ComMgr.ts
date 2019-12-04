@@ -25,7 +25,7 @@ export class ComMgr {
             ComMgr.initCom(go, info.coms);
             for (let index = 0; index < info.childs.length; index++) {
                 const element = info.childs[index];
-                let child = go.getChildByName(element.name) as Laya.Sprite3D;
+                let child = go.getChildAt(element.instanceID) as Laya.Sprite3D;
                 if (child != null) {
                     this.addCom(child, element);
                 }
@@ -49,7 +49,7 @@ export class ComMgr {
             ComMgr.initData(go, info.coms);
             for (let index = 0; index < info.childs.length; index++) {
                 const element = info.childs[index];
-                let child = go.getChildByName(element.name) as Laya.Sprite3D;
+                let child = go.getChildAt(element.instanceID) as Laya.Sprite3D;
                 if (child != null) {
                     this.initDatas(child, element);
                 }

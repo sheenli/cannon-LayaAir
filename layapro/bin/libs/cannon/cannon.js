@@ -44,11 +44,19 @@ CANNON = function () {
                     if (i) return i(o, !0);
                     throw new Error("Cannot find module '" + o + "'")
                 }
-                var f = n[o] = { exports: {} };
-                t[o][0].call(f.exports, function (e) { var n = t[o][1][e]; return s(n ? n : e) },
+                var f = n[o] = {exports: {}};
+                t[o][0].call(f.exports, function (e) {
+                        var n = t[o][1][e];
+                        return s(n ? n : e)
+                    },
                     f, f.exports, e, t, n, r)
-            } return n[o].exports
-        } var i = typeof require == "function" && require; for (var o = 0; o < r.length; o++)s(r[o]); return s
+            }
+            return n[o].exports
+        }
+
+        var i = typeof require == "function" && require;
+        for (var o = 0; o < r.length; o++) s(r[o]);
+        return s
     })({
         1: [function (_dereq_, module, exports) {
             module.exports = {
@@ -96,7 +104,8 @@ CANNON = function () {
                 "dependencies": {}
             }
 
-        }, {}], 2: [function (_dereq_, module, exports) {
+        }, {}],
+        2: [function (_dereq_, module, exports) {
             // Export classes
             module.exports = {
                 version: _dereq_('../package.json').version,
@@ -150,7 +159,57 @@ CANNON = function () {
                 World: _dereq_('./world/World'),
             };
 
-        }, { "../package.json": 1, "./collision/AABB": 3, "./collision/ArrayCollisionMatrix": 4, "./collision/Broadphase": 5, "./collision/GridBroadphase": 6, "./collision/NaiveBroadphase": 7, "./collision/ObjectCollisionMatrix": 8, "./collision/Ray": 9, "./collision/RaycastResult": 10, "./collision/SAPBroadphase": 11, "./constraints/ConeTwistConstraint": 12, "./constraints/Constraint": 13, "./constraints/DistanceConstraint": 14, "./constraints/HingeConstraint": 15, "./constraints/LockConstraint": 16, "./constraints/PointToPointConstraint": 17, "./equations/ContactEquation": 19, "./equations/Equation": 20, "./equations/FrictionEquation": 21, "./equations/RotationalEquation": 22, "./equations/RotationalMotorEquation": 23, "./material/ContactMaterial": 24, "./material/Material": 25, "./math/Mat3": 27, "./math/Quaternion": 28, "./math/Vec3": 30, "./objects/Body": 31, "./objects/RaycastVehicle": 32, "./objects/RigidVehicle": 33, "./objects/SPHSystem": 34, "./objects/Spring": 35, "./shapes/Box": 37, "./shapes/ConvexPolyhedron": 38, "./shapes/Cylinder": 39, "./shapes/Heightfield": 40, "./shapes/Particle": 41, "./shapes/Plane": 42, "./shapes/Shape": 43, "./shapes/Sphere": 44, "./shapes/Trimesh": 45, "./solver/GSSolver": 46, "./solver/Solver": 47, "./solver/SplitSolver": 48, "./utils/EventTarget": 49, "./utils/Pool": 51, "./utils/Vec3Pool": 54, "./world/Narrowphase": 55, "./world/World": 56 }], 3: [function (_dereq_, module, exports) {
+        }, {
+            "../package.json": 1,
+            "./collision/AABB": 3,
+            "./collision/ArrayCollisionMatrix": 4,
+            "./collision/Broadphase": 5,
+            "./collision/GridBroadphase": 6,
+            "./collision/NaiveBroadphase": 7,
+            "./collision/ObjectCollisionMatrix": 8,
+            "./collision/Ray": 9,
+            "./collision/RaycastResult": 10,
+            "./collision/SAPBroadphase": 11,
+            "./constraints/ConeTwistConstraint": 12,
+            "./constraints/Constraint": 13,
+            "./constraints/DistanceConstraint": 14,
+            "./constraints/HingeConstraint": 15,
+            "./constraints/LockConstraint": 16,
+            "./constraints/PointToPointConstraint": 17,
+            "./equations/ContactEquation": 19,
+            "./equations/Equation": 20,
+            "./equations/FrictionEquation": 21,
+            "./equations/RotationalEquation": 22,
+            "./equations/RotationalMotorEquation": 23,
+            "./material/ContactMaterial": 24,
+            "./material/Material": 25,
+            "./math/Mat3": 27,
+            "./math/Quaternion": 28,
+            "./math/Vec3": 30,
+            "./objects/Body": 31,
+            "./objects/RaycastVehicle": 32,
+            "./objects/RigidVehicle": 33,
+            "./objects/SPHSystem": 34,
+            "./objects/Spring": 35,
+            "./shapes/Box": 37,
+            "./shapes/ConvexPolyhedron": 38,
+            "./shapes/Cylinder": 39,
+            "./shapes/Heightfield": 40,
+            "./shapes/Particle": 41,
+            "./shapes/Plane": 42,
+            "./shapes/Shape": 43,
+            "./shapes/Sphere": 44,
+            "./shapes/Trimesh": 45,
+            "./solver/GSSolver": 46,
+            "./solver/Solver": 47,
+            "./solver/SplitSolver": 48,
+            "./utils/EventTarget": 49,
+            "./utils/Pool": 51,
+            "./utils/Vec3Pool": 54,
+            "./world/Narrowphase": 55,
+            "./world/World": 56
+        }],
+        3: [function (_dereq_, module, exports) {
             var Vec3 = _dereq_('../math/Vec3');
             var Utils = _dereq_('../utils/Utils');
 
@@ -219,12 +278,24 @@ CANNON = function () {
                         p = tmp;
                     }
 
-                    if (p.x > u.x) { u.x = p.x; }
-                    if (p.x < l.x) { l.x = p.x; }
-                    if (p.y > u.y) { u.y = p.y; }
-                    if (p.y < l.y) { l.y = p.y; }
-                    if (p.z > u.z) { u.z = p.z; }
-                    if (p.z < l.z) { l.z = p.z; }
+                    if (p.x > u.x) {
+                        u.x = p.x;
+                    }
+                    if (p.x < l.x) {
+                        l.x = p.x;
+                    }
+                    if (p.y > u.y) {
+                        u.y = p.y;
+                    }
+                    if (p.y < l.y) {
+                        l.y = p.y;
+                    }
+                    if (p.z > u.z) {
+                        u.z = p.z;
+                    }
+                    if (p.z < l.z) {
+                        l.z = p.z;
+                    }
                 }
 
                 // Add offset
@@ -452,7 +523,8 @@ CANNON = function () {
                 return target.setFromPoints(corners);
             };
 
-        }, { "../math/Vec3": 30, "../utils/Utils": 53 }], 4: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30, "../utils/Utils": 53}],
+        4: [function (_dereq_, module, exports) {
             module.exports = ArrayCollisionMatrix;
 
             /**
@@ -525,7 +597,8 @@ CANNON = function () {
                 this.matrix.length = n * (n - 1) >> 1;
             };
 
-        }, {}], 5: [function (_dereq_, module, exports) {
+        }, {}],
+        5: [function (_dereq_, module, exports) {
             var Body = _dereq_('../objects/Body');
             var Vec3 = _dereq_('../math/Vec3');
             var Quaternion = _dereq_('../math/Quaternion');
@@ -542,10 +615,10 @@ CANNON = function () {
              */
             function Broadphase() {
                 /**
-                * The world to search for collisions in.
-                * @property world
-                * @type {World}
-                */
+                 * The world to search for collisions in.
+                 * @property world
+                 * @type {World}
+                 */
                 this.world = null;
 
                 /**
@@ -605,7 +678,7 @@ CANNON = function () {
              * @param {Body} bodyB
              * @param {array} pairs1
              * @param {array} pairs2
-              */
+             */
             Broadphase.prototype.intersectionTest = function (bodyA, bodyB, pairs1, pairs2) {
                 if (this.useBoundingBoxes) {
                     this.doBoundingBoxBroadphase(bodyA, bodyB, pairs1, pairs2);
@@ -666,7 +739,7 @@ CANNON = function () {
              * @param {Array} pairs1
              * @param {Array} pairs2
              */
-            var Broadphase_makePairsUnique_temp = { keys: [] },
+            var Broadphase_makePairsUnique_temp = {keys: []},
                 Broadphase_makePairsUnique_p1 = [],
                 Broadphase_makePairsUnique_p2 = [];
             Broadphase.prototype.makePairsUnique = function (pairs1, pairs2) {
@@ -734,7 +807,14 @@ CANNON = function () {
                 console.warn('.aabbQuery is not implemented in this Broadphase subclass.');
                 return [];
             };
-        }, { "../math/Quaternion": 28, "../math/Vec3": 30, "../objects/Body": 31, "../shapes/Plane": 42, "../shapes/Shape": 43 }], 6: [function (_dereq_, module, exports) {
+        }, {
+            "../math/Quaternion": 28,
+            "../math/Vec3": 30,
+            "../objects/Body": 31,
+            "../shapes/Plane": 42,
+            "../shapes/Shape": 43
+        }],
+        6: [function (_dereq_, module, exports) {
             module.exports = GridBroadphase;
 
             var Broadphase = _dereq_('./Broadphase');
@@ -773,6 +853,7 @@ CANNON = function () {
                     this.binLengths[i] = 0;
                 }
             }
+
             GridBroadphase.prototype = new Broadphase();
             GridBroadphase.prototype.constructor = GridBroadphase;
 
@@ -844,12 +925,36 @@ CANNON = function () {
                         yoff1 = ceil((y1 - ymin) * ymult),
                         zoff1 = ceil((z1 - zmin) * zmult);
 
-                    if (xoff0 < 0) { xoff0 = 0; } else if (xoff0 >= nx) { xoff0 = nx - 1; }
-                    if (yoff0 < 0) { yoff0 = 0; } else if (yoff0 >= ny) { yoff0 = ny - 1; }
-                    if (zoff0 < 0) { zoff0 = 0; } else if (zoff0 >= nz) { zoff0 = nz - 1; }
-                    if (xoff1 < 0) { xoff1 = 0; } else if (xoff1 >= nx) { xoff1 = nx - 1; }
-                    if (yoff1 < 0) { yoff1 = 0; } else if (yoff1 >= ny) { yoff1 = ny - 1; }
-                    if (zoff1 < 0) { zoff1 = 0; } else if (zoff1 >= nz) { zoff1 = nz - 1; }
+                    if (xoff0 < 0) {
+                        xoff0 = 0;
+                    } else if (xoff0 >= nx) {
+                        xoff0 = nx - 1;
+                    }
+                    if (yoff0 < 0) {
+                        yoff0 = 0;
+                    } else if (yoff0 >= ny) {
+                        yoff0 = ny - 1;
+                    }
+                    if (zoff0 < 0) {
+                        zoff0 = 0;
+                    } else if (zoff0 >= nz) {
+                        zoff0 = nz - 1;
+                    }
+                    if (xoff1 < 0) {
+                        xoff1 = 0;
+                    } else if (xoff1 >= nx) {
+                        xoff1 = nx - 1;
+                    }
+                    if (yoff1 < 0) {
+                        yoff1 = 0;
+                    } else if (yoff1 >= ny) {
+                        yoff1 = ny - 1;
+                    }
+                    if (zoff1 < 0) {
+                        zoff1 = 0;
+                    } else if (zoff1 >= nz) {
+                        zoff1 = nz - 1;
+                    }
 
                     xoff0 *= xstep;
                     yoff0 *= ystep;
@@ -964,7 +1069,8 @@ CANNON = function () {
                 this.makePairsUnique(pairs1, pairs2);
             };
 
-        }, { "../math/Vec3": 30, "../shapes/Shape": 43, "./Broadphase": 5 }], 7: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30, "../shapes/Shape": 43, "./Broadphase": 5}],
+        7: [function (_dereq_, module, exports) {
             module.exports = NaiveBroadphase;
 
             var Broadphase = _dereq_('./Broadphase');
@@ -980,6 +1086,7 @@ CANNON = function () {
             function NaiveBroadphase() {
                 Broadphase.apply(this);
             }
+
             NaiveBroadphase.prototype = new Broadphase();
             NaiveBroadphase.prototype.constructor = NaiveBroadphase;
 
@@ -1039,7 +1146,8 @@ CANNON = function () {
 
                 return result;
             };
-        }, { "./AABB": 3, "./Broadphase": 5 }], 8: [function (_dereq_, module, exports) {
+        }, {"./AABB": 3, "./Broadphase": 5}],
+        8: [function (_dereq_, module, exports) {
             module.exports = ObjectCollisionMatrix;
 
             /**
@@ -1090,8 +1198,7 @@ CANNON = function () {
                 }
                 if (value) {
                     this.matrix[i + '-' + j] = true;
-                }
-                else {
+                } else {
                     delete this.matrix[i + '-' + j];
                 }
             };
@@ -1112,7 +1219,8 @@ CANNON = function () {
             ObjectCollisionMatrix.prototype.setNumObjects = function (n) {
             };
 
-        }, {}], 9: [function (_dereq_, module, exports) {
+        }, {}],
+        9: [function (_dereq_, module, exports) {
             module.exports = Ray;
 
             var Vec3 = _dereq_('../math/Vec3');
@@ -1200,8 +1308,10 @@ CANNON = function () {
                  * Current, user-provided result callback. Will be used if mode is Ray.ALL.
                  * @property {Function} callback
                  */
-                this.callback = function (result) { };
+                this.callback = function (result) {
+                };
             }
+
             Ray.prototype.constructor = Ray;
 
             Ray.CLOSEST = 1;
@@ -1230,7 +1340,8 @@ CANNON = function () {
                 if (options.to) {
                     this.to.copy(options.to);
                 }
-                this.callback = options.callback || function () { };
+                this.callback = options.callback || function () {
+                };
                 this.hasHit = false;
 
                 this.result.reset();
@@ -1251,6 +1362,7 @@ CANNON = function () {
              * As per "Barycentric Technique" as named here http://www.blackpawn.com/texts/pointinpoly/default.html But without the division
              */
             Ray.pointInTriangle = pointInTriangle;
+
             function pointInTriangle(p, a, b, c) {
                 c.vsub(a, v0);
                 b.vsub(a, v1);
@@ -1500,10 +1612,18 @@ CANNON = function () {
                 }
                 inside = shape.getIndexOfPosition(localRay.to.x, localRay.to.y, index, false);
                 if (inside) {
-                    if (iMinX === null || index[0] < iMinX) { iMinX = index[0]; }
-                    if (iMaxX === null || index[0] > iMaxX) { iMaxX = index[0]; }
-                    if (iMinY === null || index[1] < iMinY) { iMinY = index[1]; }
-                    if (iMaxY === null || index[1] > iMaxY) { iMaxY = index[1]; }
+                    if (iMinX === null || index[0] < iMinX) {
+                        iMinX = index[0];
+                    }
+                    if (iMaxX === null || index[0] > iMaxX) {
+                        iMaxX = index[0];
+                    }
+                    if (iMinY === null || index[1] < iMinY) {
+                        iMinY = index[1];
+                    }
+                    if (iMaxY === null || index[1] > iMaxY) {
+                        iMaxY = index[1];
+                    }
                 }
 
                 if (iMinX === null) {
@@ -1587,8 +1707,8 @@ CANNON = function () {
                     this.reportIntersection(normal, intersectionPoint, shape, body, -1);
 
                 } else {
-                    var d1 = (- b - Math.sqrt(delta)) / (2 * a);
-                    var d2 = (- b + Math.sqrt(delta)) / (2 * a);
+                    var d1 = (-b - Math.sqrt(delta)) / (2 * a);
+                    var d2 = (-b + Math.sqrt(delta)) / (2 * a);
 
                     if (d1 >= 0 && d1 <= 1) {
                         from.lerp(to, d1, intersectionPoint);
@@ -1927,6 +2047,7 @@ CANNON = function () {
 
             var v0 = new Vec3(),
                 intersect = new Vec3();
+
             function distanceFromIntersection(from, direction, position) {
 
                 // v0 is vector from from to position
@@ -1943,7 +2064,17 @@ CANNON = function () {
             }
 
 
-        }, { "../collision/AABB": 3, "../collision/RaycastResult": 10, "../math/Quaternion": 28, "../math/Transform": 29, "../math/Vec3": 30, "../shapes/Box": 37, "../shapes/ConvexPolyhedron": 38, "../shapes/Shape": 43 }], 10: [function (_dereq_, module, exports) {
+        }, {
+            "../collision/AABB": 3,
+            "../collision/RaycastResult": 10,
+            "../math/Quaternion": 28,
+            "../math/Transform": 29,
+            "../math/Vec3": 30,
+            "../shapes/Box": 37,
+            "../shapes/ConvexPolyhedron": 38,
+            "../shapes/Shape": 43
+        }],
+        10: [function (_dereq_, module, exports) {
             var Vec3 = _dereq_('../math/Vec3');
 
             module.exports = RaycastResult;
@@ -2066,7 +2197,8 @@ CANNON = function () {
                 this.body = body;
                 this.distance = distance;
             };
-        }, { "../math/Vec3": 30 }], 11: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30}],
+        11: [function (_dereq_, module, exports) {
             var Shape = _dereq_('../shapes/Shape');
             var Broadphase = _dereq_('../collision/Broadphase');
 
@@ -2121,6 +2253,7 @@ CANNON = function () {
                     this.setWorld(world);
                 }
             }
+
             SAPBroadphase.prototype = new Broadphase();
 
             /**
@@ -2370,8 +2503,12 @@ CANNON = function () {
                 }
 
                 var axisIndex = this.axisIndex, axis = 'x';
-                if (axisIndex === 1) { axis = 'y'; }
-                if (axisIndex === 2) { axis = 'z'; }
+                if (axisIndex === 1) {
+                    axis = 'y';
+                }
+                if (axisIndex === 2) {
+                    axis = 'z';
+                }
 
                 var axisList = this.axisList;
                 var lower = aabb.lowerBound[axis];
@@ -2390,7 +2527,8 @@ CANNON = function () {
 
                 return result;
             };
-        }, { "../collision/Broadphase": 5, "../shapes/Shape": 43 }], 12: [function (_dereq_, module, exports) {
+        }, {"../collision/Broadphase": 5, "../shapes/Shape": 43}],
+        12: [function (_dereq_, module, exports) {
             module.exports = ConeTwistConstraint;
 
             var Constraint = _dereq_('./Constraint');
@@ -2451,6 +2589,7 @@ CANNON = function () {
 
                 this.equations.push(c, t);
             }
+
             ConeTwistConstraint.prototype = new PointToPointConstraint();
             ConeTwistConstraint.constructor = ConeTwistConstraint;
 
@@ -2481,7 +2620,15 @@ CANNON = function () {
             };
 
 
-        }, { "../equations/ConeEquation": 18, "../equations/ContactEquation": 19, "../equations/RotationalEquation": 22, "../math/Vec3": 30, "./Constraint": 13, "./PointToPointConstraint": 17 }], 13: [function (_dereq_, module, exports) {
+        }, {
+            "../equations/ConeEquation": 18,
+            "../equations/ContactEquation": 19,
+            "../equations/RotationalEquation": 22,
+            "../math/Vec3": 30,
+            "./Constraint": 13,
+            "./PointToPointConstraint": 17
+        }],
+        13: [function (_dereq_, module, exports) {
             module.exports = Constraint;
 
             var Utils = _dereq_('../utils/Utils');
@@ -2574,7 +2721,8 @@ CANNON = function () {
 
             Constraint.idCounter = 0;
 
-        }, { "../utils/Utils": 53 }], 14: [function (_dereq_, module, exports) {
+        }, {"../utils/Utils": 53}],
+        14: [function (_dereq_, module, exports) {
             module.exports = DistanceConstraint;
 
             var Constraint = _dereq_('./Constraint');
@@ -2617,6 +2765,7 @@ CANNON = function () {
                 eq.minForce = -maxForce;
                 eq.maxForce = maxForce;
             }
+
             DistanceConstraint.prototype = new Constraint();
 
             DistanceConstraint.prototype.update = function () {
@@ -2631,7 +2780,8 @@ CANNON = function () {
                 normal.mult(halfDist, eq.ri);
                 normal.mult(-halfDist, eq.rj);
             };
-        }, { "../equations/ContactEquation": 19, "./Constraint": 13 }], 15: [function (_dereq_, module, exports) {
+        }, {"../equations/ContactEquation": 19, "./Constraint": 13}],
+        15: [function (_dereq_, module, exports) {
             module.exports = HingeConstraint;
 
             var Constraint = _dereq_('./Constraint');
@@ -2701,6 +2851,7 @@ CANNON = function () {
                     motor
                 );
             }
+
             HingeConstraint.prototype = new PointToPointConstraint();
             HingeConstraint.constructor = HingeConstraint;
 
@@ -2767,7 +2918,15 @@ CANNON = function () {
             };
 
 
-        }, { "../equations/ContactEquation": 19, "../equations/RotationalEquation": 22, "../equations/RotationalMotorEquation": 23, "../math/Vec3": 30, "./Constraint": 13, "./PointToPointConstraint": 17 }], 16: [function (_dereq_, module, exports) {
+        }, {
+            "../equations/ContactEquation": 19,
+            "../equations/RotationalEquation": 22,
+            "../equations/RotationalMotorEquation": 23,
+            "../math/Vec3": 30,
+            "./Constraint": 13,
+            "./PointToPointConstraint": 17
+        }],
+        16: [function (_dereq_, module, exports) {
             module.exports = LockConstraint;
 
             var Constraint = _dereq_('./Constraint');
@@ -2819,6 +2978,7 @@ CANNON = function () {
 
                 this.equations.push(r1, r2, r3);
             }
+
             LockConstraint.prototype = new PointToPointConstraint();
             LockConstraint.constructor = LockConstraint;
 
@@ -2848,7 +3008,15 @@ CANNON = function () {
             };
 
 
-        }, { "../equations/ContactEquation": 19, "../equations/RotationalEquation": 22, "../equations/RotationalMotorEquation": 23, "../math/Vec3": 30, "./Constraint": 13, "./PointToPointConstraint": 17 }], 17: [function (_dereq_, module, exports) {
+        }, {
+            "../equations/ContactEquation": 19,
+            "../equations/RotationalEquation": 22,
+            "../equations/RotationalMotorEquation": 23,
+            "../math/Vec3": 30,
+            "./Constraint": 13,
+            "./PointToPointConstraint": 17
+        }],
+        17: [function (_dereq_, module, exports) {
             module.exports = PointToPointConstraint;
 
             var Constraint = _dereq_('./Constraint');
@@ -2923,6 +3091,7 @@ CANNON = function () {
                 y.ni.set(0, 1, 0);
                 z.ni.set(0, 0, 1);
             }
+
             PointToPointConstraint.prototype = new Constraint();
 
             PointToPointConstraint.prototype.update = function () {
@@ -2941,7 +3110,8 @@ CANNON = function () {
                 z.ri.copy(x.ri);
                 z.rj.copy(x.rj);
             };
-        }, { "../equations/ContactEquation": 19, "../math/Vec3": 30, "./Constraint": 13 }], 18: [function (_dereq_, module, exports) {
+        }, {"../equations/ContactEquation": 19, "../math/Vec3": 30, "./Constraint": 13}],
+        18: [function (_dereq_, module, exports) {
             module.exports = ConeEquation;
 
             var Vec3 = _dereq_('../math/Vec3');
@@ -3014,13 +3184,14 @@ CANNON = function () {
                     GW = this.computeGW(),
                     GiMf = this.computeGiMf();
 
-                var B = - g * a - GW * b - h * GiMf;
+                var B = -g * a - GW * b - h * GiMf;
 
                 return B;
             };
 
 
-        }, { "../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20 }], 19: [function (_dereq_, module, exports) {
+        }, {"../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20}],
+        19: [function (_dereq_, module, exports) {
             module.exports = ContactEquation;
 
             var Equation = _dereq_('./Equation');
@@ -3122,7 +3293,7 @@ CANNON = function () {
                 var GW = ePlusOne * vj.dot(n) - ePlusOne * vi.dot(n) + wj.dot(rjxn) - wi.dot(rixn);
                 var GiMf = this.computeGiMf();
 
-                var B = - g * a - GW * b - h * GiMf;
+                var B = -g * a - GW * b - h * GiMf;
 
                 return B;
             };
@@ -3157,7 +3328,8 @@ CANNON = function () {
             };
 
 
-        }, { "../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20 }], 20: [function (_dereq_, module, exports) {
+        }, {"../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20}],
+        20: [function (_dereq_, module, exports) {
             module.exports = Equation;
 
             var JacobianElement = _dereq_('../math/JacobianElement'),
@@ -3235,6 +3407,7 @@ CANNON = function () {
                 // Set typical spook params
                 this.setSpookParams(1e7, 4, 1 / 60);
             }
+
             Equation.prototype.constructor = Equation;
 
             Equation.id = 0;
@@ -3261,7 +3434,7 @@ CANNON = function () {
                 var GW = this.computeGW(),
                     Gq = this.computeGq(),
                     GiMf = this.computeGiMf();
-                return - Gq * a - GW * b - GiMf * h;
+                return -Gq * a - GW * b - GiMf * h;
             };
 
             /**
@@ -3337,10 +3510,16 @@ CANNON = function () {
                     invMassi = bi.invMassSolve,
                     invMassj = bj.invMassSolve;
 
-                if (bi.invInertiaWorldSolve) { bi.invInertiaWorldSolve.vmult(ti, invIi_vmult_taui); }
-                else { invIi_vmult_taui.set(0, 0, 0); }
-                if (bj.invInertiaWorldSolve) { bj.invInertiaWorldSolve.vmult(tj, invIj_vmult_tauj); }
-                else { invIj_vmult_tauj.set(0, 0, 0); }
+                if (bi.invInertiaWorldSolve) {
+                    bi.invInertiaWorldSolve.vmult(ti, invIi_vmult_taui);
+                } else {
+                    invIi_vmult_taui.set(0, 0, 0);
+                }
+                if (bj.invInertiaWorldSolve) {
+                    bj.invInertiaWorldSolve.vmult(tj, invIj_vmult_tauj);
+                } else {
+                    invIj_vmult_tauj.set(0, 0, 0);
+                }
 
                 fi.mult(invMassi, iMfi);
                 fj.mult(invMassj, iMfj);
@@ -3429,7 +3608,8 @@ CANNON = function () {
                 return this.computeGiMGt() + this.eps;
             };
 
-        }, { "../math/JacobianElement": 26, "../math/Vec3": 30 }], 21: [function (_dereq_, module, exports) {
+        }, {"../math/JacobianElement": 26, "../math/Vec3": 30}],
+        21: [function (_dereq_, module, exports) {
             module.exports = FrictionEquation;
 
             var Equation = _dereq_('./Equation');
@@ -3485,12 +3665,13 @@ CANNON = function () {
                 var GW = this.computeGW();
                 var GiMf = this.computeGiMf();
 
-                var B = - GW * b - h * GiMf;
+                var B = -GW * b - h * GiMf;
 
                 return B;
             };
 
-        }, { "../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20 }], 22: [function (_dereq_, module, exports) {
+        }, {"../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20}],
+        22: [function (_dereq_, module, exports) {
             module.exports = RotationalEquation;
 
             var Vec3 = _dereq_('../math/Vec3');
@@ -3555,13 +3736,14 @@ CANNON = function () {
                     GW = this.computeGW(),
                     GiMf = this.computeGiMf();
 
-                var B = - g * a - GW * b - h * GiMf;
+                var B = -g * a - GW * b - h * GiMf;
 
                 return B;
             };
 
 
-        }, { "../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20 }], 23: [function (_dereq_, module, exports) {
+        }, {"../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20}],
+        23: [function (_dereq_, module, exports) {
             module.exports = RotationalMotorEquation;
 
             var Vec3 = _dereq_('../math/Vec3');
@@ -3628,12 +3810,13 @@ CANNON = function () {
                 var GW = this.computeGW() - this.targetVelocity,
                     GiMf = this.computeGiMf();
 
-                var B = - GW * b - h * GiMf;
+                var B = -GW * b - h * GiMf;
 
                 return B;
             };
 
-        }, { "../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20 }], 24: [function (_dereq_, module, exports) {
+        }, {"../math/Mat3": 27, "../math/Vec3": 30, "./Equation": 20}],
+        24: [function (_dereq_, module, exports) {
             var Utils = _dereq_('../utils/Utils');
 
             module.exports = ContactMaterial;
@@ -3714,7 +3897,8 @@ CANNON = function () {
 
             ContactMaterial.idCounter = 0;
 
-        }, { "../utils/Utils": 53 }], 25: [function (_dereq_, module, exports) {
+        }, {"../utils/Utils": 53}],
+        25: [function (_dereq_, module, exports) {
             module.exports = Material;
 
             /**
@@ -3764,7 +3948,8 @@ CANNON = function () {
 
             Material.idCounter = 0;
 
-        }, {}], 26: [function (_dereq_, module, exports) {
+        }, {}],
+        26: [function (_dereq_, module, exports) {
             module.exports = JacobianElement;
 
             var Vec3 = _dereq_('./Vec3');
@@ -3808,7 +3993,8 @@ CANNON = function () {
                 return spatial.dot(this.spatial) + rotational.dot(this.rotational);
             };
 
-        }, { "./Vec3": 30 }], 27: [function (_dereq_, module, exports) {
+        }, {"./Vec3": 30}],
+        27: [function (_dereq_, module, exports) {
             module.exports = Mat3;
 
             var Vec3 = _dereq_('./Vec3');
@@ -4232,7 +4418,8 @@ CANNON = function () {
                 return target;
             };
 
-        }, { "./Vec3": 30 }], 28: [function (_dereq_, module, exports) {
+        }, {"./Vec3": 30}],
+        28: [function (_dereq_, module, exports) {
             module.exports = Quaternion;
 
             var Vec3 = _dereq_('./Vec3');
@@ -4542,7 +4729,7 @@ CANNON = function () {
                         }
                         if (test < -0.499) { // singularity at south pole
                             heading = -2 * Math.atan2(x, w);
-                            attitude = - Math.PI / 2;
+                            attitude = -Math.PI / 2;
                             bank = 0;
                         }
                         if (isNaN(heading)) {
@@ -4632,7 +4819,8 @@ CANNON = function () {
             Quaternion.prototype.clone = function () {
                 return new Quaternion(this.x, this.y, this.z, this.w);
             };
-        }, { "./Vec3": 30 }], 29: [function (_dereq_, module, exports) {
+        }, {"./Vec3": 30}],
+        29: [function (_dereq_, module, exports) {
             var Vec3 = _dereq_('./Vec3');
             var Quaternion = _dereq_('./Quaternion');
 
@@ -4737,7 +4925,8 @@ CANNON = function () {
                 return result;
             };
 
-        }, { "./Quaternion": 28, "./Vec3": 30 }], 30: [function (_dereq_, module, exports) {
+        }, {"./Quaternion": 28, "./Vec3": 30}],
+        30: [function (_dereq_, module, exports) {
             module.exports = Vec3;
 
             var Mat3 = _dereq_('./Mat3');
@@ -5190,7 +5379,8 @@ CANNON = function () {
             Vec3.prototype.clone = function () {
                 return new Vec3(this.x, this.y, this.z);
             };
-        }, { "./Mat3": 27 }], 31: [function (_dereq_, module, exports) {
+        }, {"./Mat3": 27}],
+        31: [function (_dereq_, module, exports) {
             module.exports = Body;
 
             var EventTarget = _dereq_('../utils/EventTarget');
@@ -5519,6 +5709,7 @@ CANNON = function () {
 
                 this.updateMassProperties();
             }
+
             Body.prototype = new EventTarget();
             Body.prototype.constructor = Body;
 
@@ -5545,7 +5736,6 @@ CANNON = function () {
              * @type {Number}
              */
             Body.KINEMATIC = 4;
-
 
 
             /**
@@ -5579,7 +5769,7 @@ CANNON = function () {
                 var s = this.sleepState;
                 this.sleepState = 0;
                 if (s === Body.SLEEPING) {
-                    this.dispatchEvent({ type: "wakeup" });
+                    this.dispatchEvent({type: "wakeup"});
                 }
             };
 
@@ -5987,7 +6177,17 @@ CANNON = function () {
                 return result;
             };
 
-        }, { "../collision/AABB": 3, "../material/Material": 25, "../math/Mat3": 27, "../math/Quaternion": 28, "../math/Vec3": 30, "../shapes/Box": 37, "../shapes/Shape": 43, "../utils/EventTarget": 49 }], 32: [function (_dereq_, module, exports) {
+        }, {
+            "../collision/AABB": 3,
+            "../material/Material": 25,
+            "../math/Mat3": 27,
+            "../math/Quaternion": 28,
+            "../math/Vec3": 30,
+            "../shapes/Box": 37,
+            "../shapes/Shape": 43,
+            "../utils/EventTarget": 49
+        }],
+        32: [function (_dereq_, module, exports) {
             var Body = _dereq_('./Body');
             var Vec3 = _dereq_('../math/Vec3');
             var Quaternion = _dereq_('../math/Quaternion');
@@ -6645,6 +6845,7 @@ CANNON = function () {
             var computeImpulseDenominator_c0 = new Vec3();
             var computeImpulseDenominator_vec = new Vec3();
             var computeImpulseDenominator_m = new Vec3();
+
             function computeImpulseDenominator(body, pos, normal) {
                 var r0 = computeImpulseDenominator_r0;
                 var c0 = computeImpulseDenominator_c0;
@@ -6687,11 +6888,19 @@ CANNON = function () {
 
                 var contactDamping = 0.2;
                 var massTerm = 1 / (body1.invMass + body2.invMass);
-                var impulse = - contactDamping * rel_vel * massTerm;
+                var impulse = -contactDamping * rel_vel * massTerm;
 
                 return impulse;
             }
-        }, { "../collision/Ray": 9, "../collision/RaycastResult": 10, "../math/Quaternion": 28, "../math/Vec3": 30, "../objects/WheelInfo": 36, "./Body": 31 }], 33: [function (_dereq_, module, exports) {
+        }, {
+            "../collision/Ray": 9,
+            "../collision/RaycastResult": 10,
+            "../math/Quaternion": 28,
+            "../math/Vec3": 30,
+            "../objects/WheelInfo": 36,
+            "./Body": 31
+        }],
+        33: [function (_dereq_, module, exports) {
             var Body = _dereq_('./Body');
             var Sphere = _dereq_('../shapes/Sphere');
             var Box = _dereq_('../shapes/Box');
@@ -6913,7 +7122,14 @@ CANNON = function () {
                 return w.dot(worldAxis);
             };
 
-        }, { "../constraints/HingeConstraint": 15, "../math/Vec3": 30, "../shapes/Box": 37, "../shapes/Sphere": 44, "./Body": 31 }], 34: [function (_dereq_, module, exports) {
+        }, {
+            "../constraints/HingeConstraint": 15,
+            "../math/Vec3": 30,
+            "../shapes/Box": 37,
+            "../shapes/Sphere": 44,
+            "./Body": 31
+        }],
+        34: [function (_dereq_, module, exports) {
             module.exports = SPHSystem;
 
             var Shape = _dereq_('../shapes/Shape');
@@ -7128,7 +7344,15 @@ CANNON = function () {
                 return nabla;
             };
 
-        }, { "../material/Material": 25, "../math/Quaternion": 28, "../math/Vec3": 30, "../objects/Body": 31, "../shapes/Particle": 41, "../shapes/Shape": 43 }], 35: [function (_dereq_, module, exports) {
+        }, {
+            "../material/Material": 25,
+            "../math/Quaternion": 28,
+            "../math/Vec3": 30,
+            "../objects/Body": 31,
+            "../shapes/Particle": 41,
+            "../shapes/Shape": 43
+        }],
+        35: [function (_dereq_, module, exports) {
             var Vec3 = _dereq_('../math/Vec3');
 
             module.exports = Spring;
@@ -7323,7 +7547,8 @@ CANNON = function () {
                 bodyB.torque.vadd(rj_x_f, bodyB.torque);
             };
 
-        }, { "../math/Vec3": 30 }], 36: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30}],
+        36: [function (_dereq_, module, exports) {
             var Vec3 = _dereq_('../math/Vec3');
             var Transform = _dereq_('../math/Transform');
             var RaycastResult = _dereq_('../collision/RaycastResult');
@@ -7606,7 +7831,8 @@ CANNON = function () {
                     this.clippedInvContactDotSuspension = 1.0;
                 }
             };
-        }, { "../collision/RaycastResult": 10, "../math/Transform": 29, "../math/Vec3": 30, "../utils/Utils": 53 }], 37: [function (_dereq_, module, exports) {
+        }, {"../collision/RaycastResult": 10, "../math/Transform": 29, "../math/Vec3": 30, "../utils/Utils": 53}],
+        37: [function (_dereq_, module, exports) {
             module.exports = Box;
 
             var Shape = _dereq_('./Shape');
@@ -7642,6 +7868,7 @@ CANNON = function () {
                 this.updateConvexPolyhedronRepresentation();
                 this.updateBoundingSphereRadius();
             }
+
             Box.prototype = new Shape();
             Box.prototype.constructor = Box;
 
@@ -7745,13 +7972,13 @@ CANNON = function () {
 
                 var e = this.halfExtents;
                 var corners = [[e.x, e.y, e.z],
-                [-e.x, e.y, e.z],
-                [-e.x, -e.y, e.z],
-                [-e.x, -e.y, -e.z],
-                [e.x, -e.y, -e.z],
-                [e.x, e.y, -e.z],
-                [-e.x, e.y, -e.z],
-                [e.x, -e.y, e.z]];
+                    [-e.x, e.y, e.z],
+                    [-e.x, -e.y, e.z],
+                    [-e.x, -e.y, -e.z],
+                    [e.x, -e.y, -e.z],
+                    [e.x, e.y, -e.z],
+                    [-e.x, e.y, -e.z],
+                    [e.x, -e.y, e.z]];
                 for (var i = 0; i < corners.length; i++) {
                     worldCornerTempPos.set(corners[i][0], corners[i][1], corners[i][2]);
                     quat.vmult(worldCornerTempPos, worldCornerTempPos);
@@ -7843,7 +8070,8 @@ CANNON = function () {
                 // });
             };
 
-        }, { "../math/Vec3": 30, "./ConvexPolyhedron": 38, "./Shape": 43 }], 38: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30, "./ConvexPolyhedron": 38, "./Shape": 43}],
+        38: [function (_dereq_, module, exports) {
             module.exports = ConvexPolyhedron;
 
             var Shape = _dereq_('./Shape');
@@ -7919,6 +8147,7 @@ CANNON = function () {
                 this.computeEdges();
                 this.updateBoundingSphereRadius();
             }
+
             ConvexPolyhedron.prototype = new Shape();
             ConvexPolyhedron.prototype.constructor = ConvexPolyhedron;
 
@@ -8771,7 +9000,8 @@ CANNON = function () {
                 result[1] = min;
             };
 
-        }, { "../math/Quaternion": 28, "../math/Transform": 29, "../math/Vec3": 30, "./Shape": 43 }], 39: [function (_dereq_, module, exports) {
+        }, {"../math/Quaternion": 28, "../math/Transform": 29, "../math/Vec3": 30, "./Shape": 43}],
+        39: [function (_dereq_, module, exports) {
             module.exports = Cylinder;
 
             var Shape = _dereq_('./Shape');
@@ -8853,7 +9083,8 @@ CANNON = function () {
 
             Cylinder.prototype = new ConvexPolyhedron();
 
-        }, { "../math/Quaternion": 28, "../math/Vec3": 30, "./ConvexPolyhedron": 38, "./Shape": 43 }], 40: [function (_dereq_, module, exports) {
+        }, {"../math/Quaternion": 28, "../math/Vec3": 30, "./ConvexPolyhedron": 38, "./Shape": 43}],
+        40: [function (_dereq_, module, exports) {
             var Shape = _dereq_('./Shape');
             var ConvexPolyhedron = _dereq_('./ConvexPolyhedron');
             var Vec3 = _dereq_('../math/Vec3');
@@ -8943,6 +9174,7 @@ CANNON = function () {
                 // _cachedPillars["0_2_1"]
                 this._cachedPillars = {};
             }
+
             Heightfield.prototype = new Shape();
 
             /**
@@ -9066,10 +9298,18 @@ CANNON = function () {
 
                 if (clamp) {
                     // Clamp index to edges
-                    if (xi < 0) { xi = 0; }
-                    if (yi < 0) { yi = 0; }
-                    if (xi >= data.length - 1) { xi = data.length - 1; }
-                    if (yi >= data[0].length - 1) { yi = data[0].length - 1; }
+                    if (xi < 0) {
+                        xi = 0;
+                    }
+                    if (yi < 0) {
+                        yi = 0;
+                    }
+                    if (xi >= data.length - 1) {
+                        xi = data.length - 1;
+                    }
+                    if (yi >= data[0].length - 1) {
+                        yi = data[0].length - 1;
+                    }
                 }
 
                 // Bail out if we are out of the terrain
@@ -9267,17 +9507,17 @@ CANNON = function () {
                     verts[3].set(
                         0.25 * elementSize,
                         0.25 * elementSize,
-                        - h - 1
+                        -h - 1
                     );
                     verts[4].set(
                         -0.75 * elementSize,
                         0.25 * elementSize,
-                        - h - 1
+                        -h - 1
                     );
                     verts[5].set(
                         0.25 * elementSize,
                         -0.75 * elementSize,
-                        - h - 1
+                        -h - 1
                     );
 
                     // Top triangle
@@ -9339,7 +9579,8 @@ CANNON = function () {
                 this.boundingSphereRadius = new Vec3(data.length * s, data[0].length * s, Math.max(Math.abs(this.maxValue), Math.abs(this.minValue))).norm();
             };
 
-        }, { "../math/Vec3": 30, "../utils/Utils": 53, "./ConvexPolyhedron": 38, "./Shape": 43 }], 41: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30, "../utils/Utils": 53, "./ConvexPolyhedron": 38, "./Shape": 43}],
+        41: [function (_dereq_, module, exports) {
             module.exports = Particle;
 
             var Shape = _dereq_('./Shape');
@@ -9357,6 +9598,7 @@ CANNON = function () {
 
                 this.type = Shape.types.PARTICLE;
             }
+
             Particle.prototype = new Shape();
             Particle.prototype.constructor = Particle;
 
@@ -9386,7 +9628,8 @@ CANNON = function () {
                 max.copy(pos);
             };
 
-        }, { "../math/Vec3": 30, "./Shape": 43 }], 42: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30, "./Shape": 43}],
+        42: [function (_dereq_, module, exports) {
             module.exports = Plane;
 
             var Shape = _dereq_('./Shape');
@@ -9409,6 +9652,7 @@ CANNON = function () {
 
                 this.boundingSphereRadius = Number.MAX_VALUE;
             }
+
             Plane.prototype = new Shape();
             Plane.prototype.constructor = Plane;
 
@@ -9437,19 +9681,32 @@ CANNON = function () {
                 min.set(-maxVal, -maxVal, -maxVal);
                 max.set(maxVal, maxVal, maxVal);
 
-                if (tempNormal.x === 1) { max.x = pos.x; }
-                if (tempNormal.y === 1) { max.y = pos.y; }
-                if (tempNormal.z === 1) { max.z = pos.z; }
+                if (tempNormal.x === 1) {
+                    max.x = pos.x;
+                }
+                if (tempNormal.y === 1) {
+                    max.y = pos.y;
+                }
+                if (tempNormal.z === 1) {
+                    max.z = pos.z;
+                }
 
-                if (tempNormal.x === -1) { min.x = pos.x; }
-                if (tempNormal.y === -1) { min.y = pos.y; }
-                if (tempNormal.z === -1) { min.z = pos.z; }
+                if (tempNormal.x === -1) {
+                    min.x = pos.x;
+                }
+                if (tempNormal.y === -1) {
+                    min.y = pos.y;
+                }
+                if (tempNormal.z === -1) {
+                    min.z = pos.z;
+                }
             };
 
             Plane.prototype.updateBoundingSphereRadius = function () {
                 this.boundingSphereRadius = Number.MAX_VALUE;
             };
-        }, { "../math/Vec3": 30, "./Shape": 43 }], 43: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30, "./Shape": 43}],
+        43: [function (_dereq_, module, exports) {
             module.exports = Shape;
 
             var Shape = _dereq_('./Shape');
@@ -9497,6 +9754,7 @@ CANNON = function () {
                  */
                 this.material = null;
             }
+
             Shape.prototype.constructor = Shape;
 
             /**
@@ -9548,7 +9806,8 @@ CANNON = function () {
             };
 
 
-        }, { "../material/Material": 25, "../math/Quaternion": 28, "../math/Vec3": 30, "./Shape": 43 }], 44: [function (_dereq_, module, exports) {
+        }, {"../material/Material": 25, "../math/Quaternion": 28, "../math/Vec3": 30, "./Shape": 43}],
+        44: [function (_dereq_, module, exports) {
             module.exports = Sphere;
 
             var Shape = _dereq_('./Shape');
@@ -9577,6 +9836,7 @@ CANNON = function () {
 
                 this.updateBoundingSphereRadius();
             }
+
             Sphere.prototype = new Shape();
             Sphere.prototype.constructor = Sphere;
 
@@ -9607,7 +9867,8 @@ CANNON = function () {
                 }
             };
 
-        }, { "../math/Vec3": 30, "./Shape": 43 }], 45: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30, "./Shape": 43}],
+        45: [function (_dereq_, module, exports) {
             module.exports = Trimesh;
 
             var Shape = _dereq_('./Shape');
@@ -9690,6 +9951,7 @@ CANNON = function () {
                 this.updateBoundingSphereRadius();
                 this.updateTree();
             }
+
             Trimesh.prototype = new Shape();
             Trimesh.prototype.constructor = Trimesh;
 
@@ -10169,7 +10431,15 @@ CANNON = function () {
                 return new Trimesh(vertices, indices);
             };
 
-        }, { "../collision/AABB": 3, "../math/Quaternion": 28, "../math/Transform": 29, "../math/Vec3": 30, "../utils/Octree": 50, "./Shape": 43 }], 46: [function (_dereq_, module, exports) {
+        }, {
+            "../collision/AABB": 3,
+            "../math/Quaternion": 28,
+            "../math/Transform": 29,
+            "../math/Vec3": 30,
+            "../utils/Octree": 50,
+            "./Shape": 43
+        }],
+        46: [function (_dereq_, module, exports) {
             module.exports = GSSolver;
 
             var Vec3 = _dereq_('../math/Vec3');
@@ -10203,6 +10473,7 @@ CANNON = function () {
                  */
                 this.tolerance = 1e-7;
             }
+
             GSSolver.prototype = new Solver();
 
             var GSSolver_solve_lambda = []; // Just temporary number holders that we want to reuse each solve.
@@ -10304,7 +10575,8 @@ CANNON = function () {
                 return iter;
             };
 
-        }, { "../math/Quaternion": 28, "../math/Vec3": 30, "./Solver": 47 }], 47: [function (_dereq_, module, exports) {
+        }, {"../math/Quaternion": 28, "../math/Vec3": 30, "./Solver": 47}],
+        47: [function (_dereq_, module, exports) {
             module.exports = Solver;
 
             /**
@@ -10365,7 +10637,8 @@ CANNON = function () {
             };
 
 
-        }, {}], 48: [function (_dereq_, module, exports) {
+        }, {}],
+        48: [function (_dereq_, module, exports) {
             module.exports = SplitSolver;
 
             var Vec3 = _dereq_('../math/Vec3');
@@ -10393,6 +10666,7 @@ CANNON = function () {
                     this.nodePool.push(this.createNode());
                 }
             }
+
             SplitSolver.prototype = new Solver();
 
             // Returns the number of subsystems
@@ -10400,9 +10674,10 @@ CANNON = function () {
             var SplitSolver_solve_nodePool = []; // All allocated node objects
             var SplitSolver_solve_eqs = [];   // Temp array
             var SplitSolver_solve_bds = [];   // Temp array
-            var SplitSolver_solve_dummyWorld = { bodies: [] }; // Temp object
+            var SplitSolver_solve_dummyWorld = {bodies: []}; // Temp object
 
             var STATIC = Body.STATIC;
+
             function getUnvisitedNode(nodes) {
                 var Nnodes = nodes.length;
                 for (var i = 0; i !== Nnodes; i++) {
@@ -10415,6 +10690,7 @@ CANNON = function () {
             }
 
             var queue = [];
+
             function bfs(root, visitFunc, bds, eqs) {
                 queue.push(root);
                 root.visited = true;
@@ -10443,7 +10719,7 @@ CANNON = function () {
             }
 
             SplitSolver.prototype.createNode = function () {
-                return { body: null, children: [], eqs: [], visited: false };
+                return {body: null, children: [], eqs: [], visited: false};
             };
 
             /**
@@ -10520,7 +10796,8 @@ CANNON = function () {
             function sortById(a, b) {
                 return b.id - a.id;
             }
-        }, { "../math/Quaternion": 28, "../math/Vec3": 30, "../objects/Body": 31, "./Solver": 47 }], 49: [function (_dereq_, module, exports) {
+        }, {"../math/Quaternion": 28, "../math/Vec3": 30, "../objects/Body": 31, "./Solver": 47}],
+        49: [function (_dereq_, module, exports) {
             /**
              * Base class for objects that dispatches events.
              * @class EventTarget
@@ -10543,12 +10820,14 @@ CANNON = function () {
                  * @return {EventTarget} The self object, for chainability.
                  */
                 addEventListener: function (type, listener) {
-                    if (this._listeners === undefined) { this._listeners = {}; }
+                    if (this._listeners === undefined) {
+                        this._listeners = {};
+                    }
                     var listeners = this._listeners;
                     if (listeners[type] === undefined) {
                         listeners[type] = [];
                     }
-                    if (listeners[type].indexOf(listener) === - 1) {
+                    if (listeners[type].indexOf(listener) === -1) {
                         listeners[type].push(listener);
                     }
                     return this;
@@ -10562,9 +10841,11 @@ CANNON = function () {
                  * @return {Boolean}
                  */
                 hasEventListener: function (type, listener) {
-                    if (this._listeners === undefined) { return false; }
+                    if (this._listeners === undefined) {
+                        return false;
+                    }
                     var listeners = this._listeners;
-                    if (listeners[type] !== undefined && listeners[type].indexOf(listener) !== - 1) {
+                    if (listeners[type] !== undefined && listeners[type].indexOf(listener) !== -1) {
                         return true;
                     }
                     return false;
@@ -10578,11 +10859,15 @@ CANNON = function () {
                  * @return {EventTarget} The self object, for chainability.
                  */
                 removeEventListener: function (type, listener) {
-                    if (this._listeners === undefined) { return this; }
+                    if (this._listeners === undefined) {
+                        return this;
+                    }
                     var listeners = this._listeners;
-                    if (listeners[type] === undefined) { return this; }
+                    if (listeners[type] === undefined) {
+                        return this;
+                    }
                     var index = listeners[type].indexOf(listener);
-                    if (index !== - 1) {
+                    if (index !== -1) {
                         listeners[type].splice(index, 1);
                     }
                     return this;
@@ -10596,7 +10881,9 @@ CANNON = function () {
                  * @return {EventTarget} The self object, for chainability.
                  */
                 dispatchEvent: function (event) {
-                    if (this._listeners === undefined) { return this; }
+                    if (this._listeners === undefined) {
+                        return this;
+                    }
                     var listeners = this._listeners;
                     var listenerArray = listeners[event.type];
                     if (listenerArray !== undefined) {
@@ -10609,7 +10896,8 @@ CANNON = function () {
                 }
             };
 
-        }, {}], 50: [function (_dereq_, module, exports) {
+        }, {}],
+        50: [function (_dereq_, module, exports) {
             var AABB = _dereq_('../collision/AABB');
             var Vec3 = _dereq_('../math/Vec3');
 
@@ -10668,6 +10956,7 @@ CANNON = function () {
                  */
                 this.maxDepth = typeof (options.maxDepth) !== 'undefined' ? options.maxDepth : 8;
             }
+
             Octree.prototype = new OctreeNode();
 
             OctreeNode.prototype.reset = function (aabb, options) {
@@ -10733,14 +11022,14 @@ CANNON = function () {
                 var children = this.children;
 
                 children.push(
-                    new OctreeNode({ aabb: new AABB({ lowerBound: new Vec3(0, 0, 0) }) }),
-                    new OctreeNode({ aabb: new AABB({ lowerBound: new Vec3(1, 0, 0) }) }),
-                    new OctreeNode({ aabb: new AABB({ lowerBound: new Vec3(1, 1, 0) }) }),
-                    new OctreeNode({ aabb: new AABB({ lowerBound: new Vec3(1, 1, 1) }) }),
-                    new OctreeNode({ aabb: new AABB({ lowerBound: new Vec3(0, 1, 1) }) }),
-                    new OctreeNode({ aabb: new AABB({ lowerBound: new Vec3(0, 0, 1) }) }),
-                    new OctreeNode({ aabb: new AABB({ lowerBound: new Vec3(1, 0, 1) }) }),
-                    new OctreeNode({ aabb: new AABB({ lowerBound: new Vec3(0, 1, 0) }) })
+                    new OctreeNode({aabb: new AABB({lowerBound: new Vec3(0, 0, 0)})}),
+                    new OctreeNode({aabb: new AABB({lowerBound: new Vec3(1, 0, 0)})}),
+                    new OctreeNode({aabb: new AABB({lowerBound: new Vec3(1, 1, 0)})}),
+                    new OctreeNode({aabb: new AABB({lowerBound: new Vec3(1, 1, 1)})}),
+                    new OctreeNode({aabb: new AABB({lowerBound: new Vec3(0, 1, 1)})}),
+                    new OctreeNode({aabb: new AABB({lowerBound: new Vec3(0, 0, 1)})}),
+                    new OctreeNode({aabb: new AABB({lowerBound: new Vec3(1, 0, 1)})}),
+                    new OctreeNode({aabb: new AABB({lowerBound: new Vec3(0, 1, 0)})})
                 );
 
                 u.vsub(l, halfDiagonal);
@@ -10844,7 +11133,8 @@ CANNON = function () {
                 }
             };
 
-        }, { "../collision/AABB": 3, "../math/Vec3": 30 }], 51: [function (_dereq_, module, exports) {
+        }, {"../collision/AABB": 3, "../math/Vec3": 30}],
+        51: [function (_dereq_, module, exports) {
             module.exports = Pool;
 
             /**
@@ -10900,7 +11190,8 @@ CANNON = function () {
                 throw new Error("constructObject() not implemented in this Pool subclass yet!");
             };
 
-        }, {}], 52: [function (_dereq_, module, exports) {
+        }, {}],
+        52: [function (_dereq_, module, exports) {
             module.exports = TupleDictionary;
 
             /**
@@ -10914,7 +11205,7 @@ CANNON = function () {
                  * @property data
                  * @type {Object}
                  */
-                this.data = { keys: [] };
+                this.data = {keys: []};
             }
 
             /**
@@ -10967,8 +11258,10 @@ CANNON = function () {
                 }
             };
 
-        }, {}], 53: [function (_dereq_, module, exports) {
-            function Utils() { }
+        }, {}],
+        53: [function (_dereq_, module, exports) {
+            function Utils() {
+            }
 
             module.exports = Utils;
 
@@ -10992,7 +11285,8 @@ CANNON = function () {
                 return options;
             };
 
-        }, {}], 54: [function (_dereq_, module, exports) {
+        }, {}],
+        54: [function (_dereq_, module, exports) {
             module.exports = Vec3Pool;
 
             var Vec3 = _dereq_('../math/Vec3');
@@ -11007,6 +11301,7 @@ CANNON = function () {
                 Pool.call(this);
                 this.type = Vec3;
             }
+
             Vec3Pool.prototype = new Pool();
 
             /**
@@ -11018,7 +11313,8 @@ CANNON = function () {
                 return new Vec3();
             };
 
-        }, { "../math/Vec3": 30, "./Pool": 51 }], 55: [function (_dereq_, module, exports) {
+        }, {"../math/Vec3": 30, "./Pool": 51}],
+        55: [function (_dereq_, module, exports) {
             module.exports = Narrowphase;
 
             var AABB = _dereq_('../collision/AABB');
@@ -11679,6 +11975,7 @@ CANNON = function () {
             var pointInPolygon_edge = new Vec3();
             var pointInPolygon_edge_x_normal = new Vec3();
             var pointInPolygon_vtp = new Vec3();
+
             function pointInPolygon(verts, normal, p) {
                 var positiveResult = null;
                 var N = verts.length;
@@ -12339,73 +12636,73 @@ CANNON = function () {
              * @param  {Body}       bi
              * @param  {Body}       bj
              */
-            // Narrowphase.prototype[Shape.types.CONVEXPOLYHEDRON | Shape.types.TRIMESH] =
-            // Narrowphase.prototype.convexTrimesh = function(si,sj,xi,xj,qi,qj,bi,bj,rsi,rsj,faceListA,faceListB){
-            //     var sepAxis = convexConvex_sepAxis;
+                // Narrowphase.prototype[Shape.types.CONVEXPOLYHEDRON | Shape.types.TRIMESH] =
+                // Narrowphase.prototype.convexTrimesh = function(si,sj,xi,xj,qi,qj,bi,bj,rsi,rsj,faceListA,faceListB){
+                //     var sepAxis = convexConvex_sepAxis;
 
-            //     if(xi.distanceTo(xj) > si.boundingSphereRadius + sj.boundingSphereRadius){
-            //         return;
-            //     }
+                //     if(xi.distanceTo(xj) > si.boundingSphereRadius + sj.boundingSphereRadius){
+                //         return;
+                //     }
 
-            //     // Construct a temp hull for each triangle
-            //     var hullB = new ConvexPolyhedron();
+                //     // Construct a temp hull for each triangle
+                //     var hullB = new ConvexPolyhedron();
 
-            //     hullB.faces = [[0,1,2]];
-            //     var va = new Vec3();
-            //     var vb = new Vec3();
-            //     var vc = new Vec3();
-            //     hullB.vertices = [
-            //         va,
-            //         vb,
-            //         vc
-            //     ];
+                //     hullB.faces = [[0,1,2]];
+                //     var va = new Vec3();
+                //     var vb = new Vec3();
+                //     var vc = new Vec3();
+                //     hullB.vertices = [
+                //         va,
+                //         vb,
+                //         vc
+                //     ];
 
-            //     for (var i = 0; i < sj.indices.length / 3; i++) {
+                //     for (var i = 0; i < sj.indices.length / 3; i++) {
 
-            //         var triangleNormal = new Vec3();
-            //         sj.getNormal(i, triangleNormal);
-            //         hullB.faceNormals = [triangleNormal];
+                //         var triangleNormal = new Vec3();
+                //         sj.getNormal(i, triangleNormal);
+                //         hullB.faceNormals = [triangleNormal];
 
-            //         sj.getTriangleVertices(i, va, vb, vc);
+                //         sj.getTriangleVertices(i, va, vb, vc);
 
-            //         var d = si.testSepAxis(triangleNormal, hullB, xi, qi, xj, qj);
-            //         if(!d){
-            //             triangleNormal.scale(-1, triangleNormal);
-            //             d = si.testSepAxis(triangleNormal, hullB, xi, qi, xj, qj);
+                //         var d = si.testSepAxis(triangleNormal, hullB, xi, qi, xj, qj);
+                //         if(!d){
+                //             triangleNormal.scale(-1, triangleNormal);
+                //             d = si.testSepAxis(triangleNormal, hullB, xi, qi, xj, qj);
 
-            //             if(!d){
-            //                 continue;
-            //             }
-            //         }
+                //             if(!d){
+                //                 continue;
+                //             }
+                //         }
 
-            //         var res = [];
-            //         var q = convexConvex_q;
-            //         si.clipAgainstHull(xi,qi,hullB,xj,qj,triangleNormal,-100,100,res);
-            //         for(var j = 0; j !== res.length; j++){
-            //             var r = this.createContactEquation(bi,bj,si,sj,rsi,rsj),
-            //                 ri = r.ri,
-            //                 rj = r.rj;
-            //             r.ni.copy(triangleNormal);
-            //             r.ni.negate(r.ni);
-            //             res[j].normal.negate(q);
-            //             q.mult(res[j].depth, q);
-            //             res[j].point.vadd(q, ri);
-            //             rj.copy(res[j].point);
+                //         var res = [];
+                //         var q = convexConvex_q;
+                //         si.clipAgainstHull(xi,qi,hullB,xj,qj,triangleNormal,-100,100,res);
+                //         for(var j = 0; j !== res.length; j++){
+                //             var r = this.createContactEquation(bi,bj,si,sj,rsi,rsj),
+                //                 ri = r.ri,
+                //                 rj = r.rj;
+                //             r.ni.copy(triangleNormal);
+                //             r.ni.negate(r.ni);
+                //             res[j].normal.negate(q);
+                //             q.mult(res[j].depth, q);
+                //             res[j].point.vadd(q, ri);
+                //             rj.copy(res[j].point);
 
-            //             // Contact points are in world coordinates. Transform back to relative
-            //             ri.vsub(xi,ri);
-            //             rj.vsub(xj,rj);
+                //             // Contact points are in world coordinates. Transform back to relative
+                //             ri.vsub(xi,ri);
+                //             rj.vsub(xj,rj);
 
-            //             // Make relative to bodies
-            //             ri.vadd(xi, ri);
-            //             ri.vsub(bi.position, ri);
-            //             rj.vadd(xj, rj);
-            //             rj.vsub(bj.position, rj);
+                //             // Make relative to bodies
+                //             ri.vadd(xi, ri);
+                //             ri.vsub(bi.position, ri);
+                //             rj.vadd(xj, rj);
+                //             rj.vsub(bj.position, rj);
 
-            //             result.push(r);
-            //         }
-            //     }
-            // };
+                //             result.push(r);
+                //         }
+                //     }
+                // };
 
             var particlePlane_normal = new Vec3();
             var particlePlane_relpos = new Vec3();
@@ -12627,14 +12924,30 @@ CANNON = function () {
                     }
 
                     // Clamp index to edges
-                    if (iMinX < 0) { iMinX = 0; }
-                    if (iMaxX < 0) { iMaxX = 0; }
-                    if (iMinY < 0) { iMinY = 0; }
-                    if (iMaxY < 0) { iMaxY = 0; }
-                    if (iMinX >= data.length) { iMinX = data.length - 1; }
-                    if (iMaxX >= data.length) { iMaxX = data.length - 1; }
-                    if (iMaxY >= data[0].length) { iMaxY = data[0].length - 1; }
-                    if (iMinY >= data[0].length) { iMinY = data[0].length - 1; }
+                    if (iMinX < 0) {
+                        iMinX = 0;
+                    }
+                    if (iMaxX < 0) {
+                        iMaxX = 0;
+                    }
+                    if (iMinY < 0) {
+                        iMinY = 0;
+                    }
+                    if (iMaxY < 0) {
+                        iMaxY = 0;
+                    }
+                    if (iMinX >= data.length) {
+                        iMinX = data.length - 1;
+                    }
+                    if (iMaxX >= data.length) {
+                        iMaxX = data.length - 1;
+                    }
+                    if (iMaxY >= data[0].length) {
+                        iMaxY = data[0].length - 1;
+                    }
+                    if (iMinY >= data[0].length) {
+                        iMinY = data[0].length - 1;
+                    }
 
                     var minMax = [];
                     hfShape.getRectMinMax(iMinX, iMinY, iMaxX, iMaxY, minMax);
@@ -12704,14 +13017,30 @@ CANNON = function () {
                     }
 
                     // Clamp index to edges
-                    if (iMinX < 0) { iMinX = 0; }
-                    if (iMaxX < 0) { iMaxX = 0; }
-                    if (iMinY < 0) { iMinY = 0; }
-                    if (iMaxY < 0) { iMaxY = 0; }
-                    if (iMinX >= data.length) { iMinX = data.length - 1; }
-                    if (iMaxX >= data.length) { iMaxX = data.length - 1; }
-                    if (iMaxY >= data[0].length) { iMaxY = data[0].length - 1; }
-                    if (iMinY >= data[0].length) { iMinY = data[0].length - 1; }
+                    if (iMinX < 0) {
+                        iMinX = 0;
+                    }
+                    if (iMaxX < 0) {
+                        iMaxX = 0;
+                    }
+                    if (iMinY < 0) {
+                        iMinY = 0;
+                    }
+                    if (iMaxY < 0) {
+                        iMaxY = 0;
+                    }
+                    if (iMinX >= data.length) {
+                        iMinX = data.length - 1;
+                    }
+                    if (iMaxX >= data.length) {
+                        iMaxX = data.length - 1;
+                    }
+                    if (iMaxY >= data[0].length) {
+                        iMaxY = data[0].length - 1;
+                    }
+                    if (iMinY >= data[0].length) {
+                        iMinY = data[0].length - 1;
+                    }
 
                     var minMax = [];
                     hfShape.getRectMinMax(iMinX, iMinY, iMaxX, iMaxY, minMax);
@@ -12758,7 +13087,20 @@ CANNON = function () {
                     }
                 };
 
-        }, { "../collision/AABB": 3, "../collision/Ray": 9, "../equations/ContactEquation": 19, "../equations/FrictionEquation": 21, "../math/Quaternion": 28, "../math/Transform": 29, "../math/Vec3": 30, "../shapes/ConvexPolyhedron": 38, "../shapes/Shape": 43, "../solver/Solver": 47, "../utils/Vec3Pool": 54 }], 56: [function (_dereq_, module, exports) {
+        }, {
+            "../collision/AABB": 3,
+            "../collision/Ray": 9,
+            "../equations/ContactEquation": 19,
+            "../equations/FrictionEquation": 21,
+            "../math/Quaternion": 28,
+            "../math/Transform": 29,
+            "../math/Vec3": 30,
+            "../shapes/ConvexPolyhedron": 38,
+            "../shapes/Shape": 43,
+            "../solver/Solver": 47,
+            "../utils/Vec3Pool": 54
+        }],
+        56: [function (_dereq_, module, exports) {
             /* global performance */
 
             module.exports = World;
@@ -12921,7 +13263,10 @@ CANNON = function () {
                  * @property defaultContactMaterial
                  * @type {ContactMaterial}
                  */
-                this.defaultContactMaterial = new ContactMaterial(this.defaultMaterial, this.defaultMaterial, { friction: 0.3, restitution: 0.0 });
+                this.defaultContactMaterial = new ContactMaterial(this.defaultMaterial, this.defaultMaterial, {
+                    friction: 0.3,
+                    restitution: 0.0
+                });
 
                 /**
                  * @property doProfiling
@@ -12957,6 +13302,7 @@ CANNON = function () {
                     body: null,
                 };
             }
+
             World.prototype = new EventTarget();
 
             // Temp stuff
@@ -13280,9 +13626,9 @@ CANNON = function () {
              * @method step
              * @param {Number} dt
              */
-            var World_step_postStepEvent = { type: "postStep" }, // Reusable event objects to save memory
-                World_step_preStepEvent = { type: "preStep" },
-                World_step_collideEvent = { type: "collide", body: null, contact: null },
+            var World_step_postStepEvent = {type: "postStep"}, // Reusable event objects to save memory
+                World_step_preStepEvent = {type: "preStep"},
+                World_step_collideEvent = {type: "collide", body: null, contact: null},
                 World_step_oldContacts = [], // Pools for unused objects
                 World_step_frictionEquationPool = [],
                 World_step_p1 = [], // Reusable arrays for collision pairs
@@ -13345,11 +13691,15 @@ CANNON = function () {
                 }
 
                 // Collision detection
-                if (doProfiling) { profilingStart = performance.now(); }
+                if (doProfiling) {
+                    profilingStart = performance.now();
+                }
                 p1.length = 0; // Clean up pair arrays from last step
                 p2.length = 0;
                 this.broadphase.collisionPairs(this, p1, p2);
-                if (doProfiling) { profile.broadphase = performance.now() - profilingStart; }
+                if (doProfiling) {
+                    profile.broadphase = performance.now() - profilingStart;
+                }
 
                 // Remove constrained pairs with collideConnected == false
                 var Nconstraints = constraints.length;
@@ -13369,7 +13719,9 @@ CANNON = function () {
                 this.collisionMatrixTick();
 
                 // Generate contacts
-                if (doProfiling) { profilingStart = performance.now(); }
+                if (doProfiling) {
+                    profilingStart = performance.now();
+                }
                 var oldcontacts = World_step_oldContacts;
                 var NoldContacts = contacts.length;
 
@@ -13711,8 +14063,27 @@ CANNON = function () {
                 }
             };
 
-        }, { "../collision/AABB": 3, "../collision/ArrayCollisionMatrix": 4, "../collision/NaiveBroadphase": 7, "../collision/Ray": 9, "../collision/RaycastResult": 10, "../equations/ContactEquation": 19, "../equations/FrictionEquation": 21, "../material/ContactMaterial": 24, "../material/Material": 25, "../math/Quaternion": 28, "../math/Vec3": 30, "../objects/Body": 31, "../shapes/Shape": 43, "../solver/GSSolver": 46, "../utils/EventTarget": 49, "../utils/TupleDictionary": 52, "../utils/Vec3Pool": 54, "./Narrowphase": 55 }]
+        }, {
+            "../collision/AABB": 3,
+            "../collision/ArrayCollisionMatrix": 4,
+            "../collision/NaiveBroadphase": 7,
+            "../collision/Ray": 9,
+            "../collision/RaycastResult": 10,
+            "../equations/ContactEquation": 19,
+            "../equations/FrictionEquation": 21,
+            "../material/ContactMaterial": 24,
+            "../material/Material": 25,
+            "../math/Quaternion": 28,
+            "../math/Vec3": 30,
+            "../objects/Body": 31,
+            "../shapes/Shape": 43,
+            "../solver/GSSolver": 46,
+            "../utils/EventTarget": 49,
+            "../utils/TupleDictionary": 52,
+            "../utils/Vec3Pool": 54,
+            "./Narrowphase": 55
+        }]
     }, {}, [2])
-        (2)
+    (2)
 };
-window.CANNON = CANNON()
+window.CANNON = CANNON();

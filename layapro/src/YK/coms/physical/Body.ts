@@ -26,7 +26,9 @@ export class Body extends PhysicsComponent implements ICom {
             op.material.restitution = 0;
             op.material.friction = 0;
             this.mBody = new CANNON.Body(op);
-
+            if(this.mBody.type != CANNON.Body.DYNAMIC){
+                this.mBody.collisionResponse = true;
+            }
             for (let index = 0; index < this.data.shapes.length; index++) {
                 const element = this.data.shapes[index];
                 if (element.type == CANNON.Shape.types.BOX) {
@@ -60,10 +62,7 @@ export class Body extends PhysicsComponent implements ICom {
 
     updatePhysicsTransformFromRender(force: boolean = false) {
         super.updatePhysicsTransformFromRender(force);
-        if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDSCALE)) {
-            this.setShapeScale(this.sprite3d.transform.getWorldLossyScale());
-            this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDSCALE)
-        }
+
         if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDPOSITION)) {
             this.tempCV3.set(this.sprite3d.transform.position.x, this.sprite3d.transform.position.y, this.sprite3d.transform.position.z);
             let p = this.mBody.velocity;
@@ -78,9 +77,11 @@ export class Body extends PhysicsComponent implements ICom {
                 this.sprite3d.transform.rotation.z, this.sprite3d.transform.rotation.w);
             this.mBody.quaternion = this.tempCQuaternion;
             this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDQUATERNION)
-
         }
-
+        if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDSCALE)) {
+            this.setShapeScale(this.sprite3d.transform.getWorldLossyScale());
+            this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDSCALE)
+        }
         // this.mBody.updateMassProperties();
         // this.mBody.updateInertiaWorld(new CANNON.Vec3());
         // this.mBody.updateBoundingRadius()
@@ -95,7 +96,7 @@ export class Body extends PhysicsComponent implements ICom {
                 this.sprite3d.transform.position = this.tempV3;
             }
         }
-
+ 
     }
 
     private setShapeScale(scale: Laya.Vector3) {
@@ -107,10 +108,11 @@ export class Body extends PhysicsComponent implements ICom {
                 size.set(boxData.size.x * scale.x, boxData.size.y * scale.y, boxData.size.z * scale.z);
                 size.mult(0.5);
                 let offset: CANNON.Vec3 = new CANNON.Vec3();
-                offset.set(boxData.center.x * scale.x, boxData.center.y * scale.y, boxData.center.z * scale.z);
+
                 let box = this.Body.shapes[index] as Box;
                 box.halfExtents = size;
-                this.Body.shapeOffsets[index] = offset;
+                console.log(this.Body.shapeOffsets[index],size)
+                //this.Body.shapeOffsets[index] = offset;
             }
         }
     }

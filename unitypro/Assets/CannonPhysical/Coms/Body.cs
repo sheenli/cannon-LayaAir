@@ -118,7 +118,7 @@ namespace LayaExport
             var data = new BoxData();
             data.type = (int) ShapeData.Types.BOX;
             data.center = target.center;
-            data.center.x *= -1;
+//            data.center.x *= -1;
             data.size = target.size;
             return data;
             //target.size;
