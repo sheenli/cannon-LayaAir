@@ -149,6 +149,9 @@
                 op.material.restitution = 0;
                 op.material.friction = 0;
                 this.mBody = new CANNON.Body(op);
+                if (this.mBody.type != CANNON.Body.DYNAMIC) {
+                    this.mBody.collisionResponse = true;
+                }
                 for (let index = 0; index < this.data.shapes.length; index++) {
                     const element = this.data.shapes[index];
                     if (element.type == CANNON.Shape.types.BOX) {
@@ -159,9 +162,6 @@
                         size.y = boxData.size.y * 0.5 * worldLossyScale.y;
                         size.z = boxData.size.z * 0.5 * worldLossyScale.z;
                         let offset = new CANNON.Vec3();
-                        offset.x = boxData.center.x;
-                        offset.y = boxData.center.y;
-                        offset.z = boxData.center.z;
                         let box = new CANNON.Box(size);
                         this.Body.addShape(box, offset);
                     }
@@ -174,10 +174,6 @@
         }
         updatePhysicsTransformFromRender(force = false) {
             super.updatePhysicsTransformFromRender(force);
-            if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDSCALE)) {
-                this.setShapeScale(this.sprite3d.transform.getWorldLossyScale());
-                this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDSCALE);
-            }
             if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDPOSITION)) {
                 this.tempCV3.set(this.sprite3d.transform.position.x, this.sprite3d.transform.position.y, this.sprite3d.transform.position.z);
                 let p = this.mBody.velocity;
@@ -191,6 +187,12 @@
                 this.mBody.quaternion = this.tempCQuaternion;
                 this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDQUATERNION);
             }
+            if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDSCALE)) {
+                this.setShapeScale(this.sprite3d.transform.getWorldLossyScale());
+                this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDSCALE);
+            }
+            this.mBody.updateMassProperties();
+            this.mBody.updateSolveMassProperties();
         }
         updateTransformPhysicsComponent() {
             if (this.isValid) {
@@ -208,15 +210,18 @@
                 if (element.type == CANNON.Shape.types.BOX) {
                     let boxData = element;
                     let size = new CANNON.Vec3();
-                    size.set(boxData.size.x * scale.x, boxData.size.y * scale.y, boxData.size.z * scale.z);
-                    size.mult(0.5);
+                    size.set(boxData.size.x * scale.x * 0.5, boxData.size.y * scale.y * 0.5, boxData.size.z * scale.z * 0.5);
                     let offset = new CANNON.Vec3();
-                    offset.set(boxData.center.x * scale.x, boxData.center.y * scale.y, boxData.center.z * scale.z);
+                    offset.x = boxData.size.x * scale.x * (boxData.center.x / boxData.size.x);
+                    offset.y = boxData.size.y * scale.y * (boxData.center.y / boxData.size.y);
+                    offset.z = boxData.size.z * scale.z * (boxData.center.z / boxData.size.z);
+                    offset.x *= -1;
                     let box = this.Body.shapes[index];
                     box.halfExtents = size;
                     this.Body.shapeOffsets[index] = offset;
                 }
             }
+            this.Body.updateBoundingRadius();
         }
     }
 
@@ -240,7 +245,7 @@
                 ComMgr.initCom(go, info.coms);
                 for (let index = 0; index < info.childs.length; index++) {
                     const element = info.childs[index];
-                    let child = go.getChildByName(element.name);
+                    let child = go.getChildAt(element.instanceID);
                     if (child != null) {
                         this.addCom(child, element);
                     }
@@ -262,7 +267,7 @@
                 ComMgr.initData(go, info.coms);
                 for (let index = 0; index < info.childs.length; index++) {
                     const element = info.childs[index];
-                    let child = go.getChildByName(element.name);
+                    let child = go.getChildAt(element.instanceID);
                     if (child != null) {
                         this.initDatas(child, element);
                     }

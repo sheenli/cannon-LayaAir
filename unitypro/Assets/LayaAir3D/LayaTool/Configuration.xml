@@ -22,9 +22,8 @@
     <BatchMade>True</BatchMade>
     <OtherSetting>True</OtherSetting>
     <CoverOriginalFile>True</CoverOriginalFile>
-    <CustomizeDirectory>False</CustomizeDirectory>
-    <CustomizeDirectoryName>
-    </CustomizeDirectoryName>
+    <CustomizeDirectory>True</CustomizeDirectory>
+    <CustomizeDirectoryName>unitylib</CustomizeDirectoryName>
     <Ios>False</Ios>
     <Android>False</Android>
     <Conventional>True</Conventional>

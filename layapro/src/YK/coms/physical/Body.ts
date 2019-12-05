@@ -26,7 +26,7 @@ export class Body extends PhysicsComponent implements ICom {
             op.material.restitution = 0;
             op.material.friction = 0;
             this.mBody = new CANNON.Body(op);
-            if(this.mBody.type != CANNON.Body.DYNAMIC){
+            if (this.mBody.type != CANNON.Body.DYNAMIC) {
                 this.mBody.collisionResponse = true;
             }
             for (let index = 0; index < this.data.shapes.length; index++) {
@@ -39,9 +39,6 @@ export class Body extends PhysicsComponent implements ICom {
                     size.y = boxData.size.y * 0.5 * worldLossyScale.y;
                     size.z = boxData.size.z * 0.5 * worldLossyScale.z;
                     let offset: CANNON.Vec3 = new CANNON.Vec3();
-                    offset.x = boxData.center.x;
-                    offset.y = boxData.center.y;
-                    offset.z = boxData.center.z;
                     let box = new CANNON.Box(size);
                     this.Body.addShape(box, offset)
                 }
@@ -82,7 +79,10 @@ export class Body extends PhysicsComponent implements ICom {
             this.setShapeScale(this.sprite3d.transform.getWorldLossyScale());
             this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDSCALE)
         }
-        // this.mBody.updateMassProperties();
+        this.mBody.updateMassProperties();
+        this.mBody.updateSolveMassProperties();
+        // this.mBody.updateInertiaWorld(new CANNON.Vec3());
+
         // this.mBody.updateInertiaWorld(new CANNON.Vec3());
         // this.mBody.updateBoundingRadius()
     }
@@ -96,7 +96,7 @@ export class Body extends PhysicsComponent implements ICom {
                 this.sprite3d.transform.position = this.tempV3;
             }
         }
- 
+
     }
 
     private setShapeScale(scale: Laya.Vector3) {
@@ -105,15 +105,21 @@ export class Body extends PhysicsComponent implements ICom {
             if (element.type == CANNON.Shape.types.BOX) {
                 let boxData: BoxShapeData = element as BoxShapeData;
                 let size: CANNON.Vec3 = new CANNON.Vec3();
-                size.set(boxData.size.x * scale.x, boxData.size.y * scale.y, boxData.size.z * scale.z);
-                size.mult(0.5);
+                size.set(boxData.size.x * scale.x * 0.5, boxData.size.y * scale.y * 0.5, boxData.size.z * scale.z * 0.5);
+                // size.mult(0.5);
                 let offset: CANNON.Vec3 = new CANNON.Vec3();
-
+                offset.x = boxData.size.x * scale.x * (boxData.center.x / boxData.size.x);
+                offset.y = boxData.size.y * scale.y * (boxData.center.y / boxData.size.y);
+                offset.z = boxData.size.z * scale.z * (boxData.center.z / boxData.size.z);
+                offset.x *= -1;
                 let box = this.Body.shapes[index] as Box;
                 box.halfExtents = size;
-                console.log(this.Body.shapeOffsets[index],size)
-                //this.Body.shapeOffsets[index] = offset;
+                this.Body.shapeOffsets[index] = offset;
+
+                // console.log(this.Body.shapeOffsets[index],boxData.size,size,scale);
             }
         }
+        this.Body.updateBoundingRadius();
+
     }
 }

@@ -48,7 +48,7 @@
 					"orthographic":true,
 					"orthographicVerticalSize":33.74,
 					"fieldOfView":60,
-					"enableHDR":true,
+					"enableHDR":false,
 					"nearPlane":0.3,
 					"farPlane":1000,
 					"viewport":[
@@ -5706,18 +5706,18 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								2.94,
-								-4.96,
+								4.00404,
+								-7.20598,
 								0
 							],
 							"rotation":[
 								0,
 								0,
-								0.03489959,
-								0.9993908
+								-0.03554448,
+								-0.9993681
 							],
 							"scale":[
-								12,
+								12.23676,
 								1,
 								1
 							]
@@ -5770,8 +5770,8 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-1.99,
-								-9.69,
+								-2.047879,
+								-7.63702,
 								0
 							],
 							"rotation":[
@@ -12554,8 +12554,8 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-0.77,
-								-5.06,
+								0.29,
+								-7.32,
 								0
 							],
 							"rotation":[
@@ -12618,8 +12618,8 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-0.2899995,
-								-5.06,
+								0.7700005,
+								-7.32,
 								0
 							],
 							"rotation":[
@@ -12682,8 +12682,8 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								0.1900001,
-								-5.06,
+								1.25,
+								-7.32,
 								0
 							],
 							"rotation":[
@@ -12746,8 +12746,8 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								1.15,
-								-5.06,
+								2.21,
+								-7.32,
 								0
 							],
 							"rotation":[
@@ -12810,8 +12810,8 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								1.63,
-								-5.06,
+								2.69,
+								-7.32,
 								0
 							],
 							"rotation":[
@@ -12874,8 +12874,8 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								2.11,
-								-5.06,
+								3.17,
+								-7.32,
 								0
 							],
 							"rotation":[
@@ -12938,8 +12938,8 @@
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								-3.06,
-								-7.6,
+								3.65,
+								-7.32,
 								0
 							],
 							"rotation":[
@@ -12992,42 +12992,6 @@
 								"child":[]
 							}
 						]
-					},
-					{
-						"type":"MeshSprite3D",
-						"instanceID":405,
-						"props":{
-							"name":"Cube",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								4.58,
-								2.48,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								-0.2243599,
-								-0.9745064
-							],
-							"scale":[
-								1.422049,
-								0.5,
-								0.5
-							],
-							"meshPath":"Library/unity default resources-Cube.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"type":"Laya.BlinnPhongMaterial",
-									"path":"Resources/unity_builtin_extra.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
 					}
 				]
 			}

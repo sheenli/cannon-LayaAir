@@ -62,7 +62,7 @@ const copyTasks = {
 	"qqgame": "copyPlatformFile_QQ",
 	"wxgame": "copyPlatformFile_WX",
 	"web": "copyLibsJsFile"
-}
+};
 const tasks = {
 	"biligame": "buildBiliProj",
 	"Alipaygame": "buildAlipayProj",
@@ -73,7 +73,7 @@ const tasks = {
 	"qqgame": "buildQQProj",
 	"wxgame": "buildWXProj",
 	"web": "packfile"
-}
+};
 
 if (!useOtherNode() && process.argv.length > 5 && process.argv[4] == "--config") {
 	platform = process.argv[5].replace(".json", "");
@@ -247,7 +247,7 @@ gulp.task("es6toes5", platformCopyTask, function() {
 		})) 
 		.pipe(gulp.dest(releaseDir));
 	}
-})
+});
 
 // 压缩json
 gulp.task("compressJson", ["es6toes5"], function () {
