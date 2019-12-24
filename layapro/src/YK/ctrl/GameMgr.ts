@@ -1,4 +1,4 @@
-import {GameMain} from "../../GameMain";
+import {GameMain} from "../../TestGame/GameMain";
 import {ComMgr} from "./ComMgr";
 import {CannonPhysicalCtrl} from "../core/CannonPhysicalCtrl";
 
@@ -20,7 +20,6 @@ export class GameMgr {
         this.comMgr = new ComMgr();
         this.cannonPhysicalCtrl = new CannonPhysicalCtrl();
         this.cannonPhysicalCtrl.init();
-        new GameMain()
     }
 
 

@@ -137,9 +137,6 @@
         }
         OnInit() {
             this.data = JSON.parse(this.userData);
-            for (let index = 0; index < this.data.shapes.length; index++) {
-                this.data.shapes[index] = JSON.parse(this.data.shapes[index]);
-            }
             if (this.mBody == null) {
                 let op = {};
                 op.mass = this.data.mass;
@@ -225,13 +222,16 @@
         }
     }
 
-    var Reg = Laya.ClassUtils.regClass;
+    const Reg = Laya.ClassUtils.regClass;
     class ComMgr {
         constructor() {
             ComMgr.Init();
         }
         static Init() {
             Reg("YK.Body", Body);
+        }
+        RegClass(name, cls) {
+            Reg(name, cls);
         }
         initComs(go, info) {
             this.addCom(go, info);
@@ -283,50 +283,6 @@
                 go.addComponentIntance(com);
                 com.OnInit();
             }
-        }
-    }
-
-    class GameObjectInfo {
-        constructor() {
-            this.coms = new Array();
-            this.childs = new Array();
-        }
-    }
-    class ComInfo {
-    }
-
-    class GameMain {
-        constructor() {
-            this.isDown = false;
-            console.log("测试4");
-            Laya.loader.create(["res/unitylib/Conventional/SampleScene.ls", "res/unitylib/Conventional/SampleScene.json"], Laya.Handler.create(this, (a) => {
-                let scene = Laya.loader.getRes("res/unitylib/Conventional/SampleScene.ls");
-                Laya.stage.addChild(scene);
-                this.init();
-                let goInfo = new GameObjectInfo();
-                goInfo.name = scene.name;
-                goInfo.childs = Laya.loader.getRes("res/unitylib/Conventional/SampleScene.json").objInfos;
-                GameMgr.Inst.comMgr.initComs(scene, goInfo);
-                this.mRoot = scene.getChildByName("TestRoot");
-                Laya.stage.on(Laya.Event.MOUSE_DOWN, this, (ev) => {
-                    this.isDown = true;
-                    this.brgX = ev.stageX;
-                    this.startR = this.mRoot.transform.localRotationEulerZ;
-                });
-                Laya.stage.on(Laya.Event.MOUSE_UP, this, () => {
-                    this.isDown = false;
-                });
-                Laya.stage.on(Laya.Event.MOUSE_MOVE, this, (ev) => {
-                    if (!this.isDown)
-                        return;
-                    const da = ev.stageX - this.brgX;
-                    if (Math.abs(da) > 10) {
-                        this.mRoot.transform.localRotationEulerZ = (this.startR - da * 0.3) % 360;
-                    }
-                });
-            }));
-        }
-        init() {
         }
     }
 
@@ -388,7 +344,49 @@
             this.comMgr = new ComMgr();
             this.cannonPhysicalCtrl = new CannonPhysicalCtrl();
             this.cannonPhysicalCtrl.init();
-            new GameMain();
+        }
+    }
+
+    class GameObjectInfo {
+        constructor() {
+            this.coms = new Array();
+            this.childs = new Array();
+        }
+    }
+    class ComInfo {
+    }
+
+    class GameMain {
+        constructor() {
+            this.isDown = false;
+            Laya.loader.create(["res/unitylib/Conventional/SampleScene.ls", "res/unitylib/Conventional/SampleScene.json"], Laya.Handler.create(this, (a) => {
+                let scene = Laya.loader.getRes("res/unitylib/Conventional/SampleScene.ls");
+                Laya.stage.addChild(scene);
+                this.init();
+                let goInfo = new GameObjectInfo();
+                goInfo.name = scene.name;
+                goInfo.childs = Laya.loader.getRes("res/unitylib/Conventional/SampleScene.json").objInfos;
+                GameMgr.Inst.comMgr.initComs(scene, goInfo);
+                this.mRoot = scene.getChildByName("TestRoot");
+                Laya.stage.on(Laya.Event.MOUSE_DOWN, this, (ev) => {
+                    this.isDown = true;
+                    this.brgX = ev.stageX;
+                    this.startR = this.mRoot.transform.localRotationEulerZ;
+                });
+                Laya.stage.on(Laya.Event.MOUSE_UP, this, () => {
+                    this.isDown = false;
+                });
+                Laya.stage.on(Laya.Event.MOUSE_MOVE, this, (ev) => {
+                    if (!this.isDown)
+                        return;
+                    const da = ev.stageX - this.brgX;
+                    if (Math.abs(da) > 10) {
+                        this.mRoot.transform.localRotationEulerZ = (this.startR - da * 0.3) % 360;
+                    }
+                });
+            }));
+        }
+        init() {
         }
     }
 
@@ -419,6 +417,7 @@
         }
         onConfigLoaded() {
             GameMgr.Inst.init();
+            new GameMain();
         }
     }
     new Main();

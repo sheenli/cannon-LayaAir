@@ -13,9 +13,9 @@ export class Body extends PhysicsComponent implements ICom {
 
     OnInit() {
         this.data = JSON.parse(this.userData);
-        for (let index = 0; index < this.data.shapes.length; index++) {
-            this.data.shapes[index] = JSON.parse(this.data.shapes[index] as any);
-        }
+        // for (let index = 0; index < this.data.shapes.length; index++) {
+        //     this.data.shapes[index] = JSON.parse(this.data.shapes[index] as any);
+        // }
         if (this.mBody == null) {
             let op: CANNON.IBodyOptions = {};
             op.mass = this.data.mass;

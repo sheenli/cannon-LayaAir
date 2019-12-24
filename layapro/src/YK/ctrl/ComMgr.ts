@@ -2,7 +2,7 @@ import {GameObjectInfo, ComInfo} from "../coms/GamObjectInfo";
 import {Body} from "./../coms/physical/Body";
 import {ICom} from "../coms/ICom";
 
-var Reg = Laya.ClassUtils.regClass;
+const Reg = Laya.ClassUtils.regClass;
 
 export class ComMgr {
     constructor() {
@@ -12,6 +12,11 @@ export class ComMgr {
     private static Init() {
         Reg("YK.Body", Body)
     }
+
+    RegClass(name,cls){
+        Reg(name,cls);
+    }
+
 
     initComs(go: Laya.Sprite3D, info: GameObjectInfo) {
         this.addCom(go, info);
