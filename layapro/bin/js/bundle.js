@@ -2,8 +2,7 @@
     'use strict';
 
     class GameConfig {
-        constructor() {
-        }
+        constructor() { }
         static init() {
             var reg = Laya.ClassUtils.regClass;
         }
@@ -23,12 +22,6 @@
     GameConfig.init();
 
     class GameUtils {
-        static layaV32CannonV3(pos) {
-            return new CANNON.Vec3(pos.x, pos.y, pos.z);
-        }
-        static layaQuaternion2CanQuaternion(q) {
-            return new CANNON.Quaternion(q.x, q.y, q.z, q.w);
-        }
         static SetV3(pos1, pos2) {
             pos1.x = pos2.x;
             pos1.y = pos2.y;
@@ -105,10 +98,11 @@
             this.physicalCtrl.removeBody(this);
         }
         get isValid() {
-            return this.show && this.mBody;
+            return this.show && this.mBody != null;
         }
         onDestroy() {
             this.owner.transform.off(Event.TRANSFORM_CHANGED, this, this.onTransformChanged);
+            this.physicalCtrl.removeBody(this);
             this.mBody = null;
         }
         onTransformChanged(flag) {
@@ -132,68 +126,75 @@
             super(...arguments);
             this.tempV3 = new Laya.Vector3();
             this.tempQuaternion = new Laya.Quaternion();
-            this.tempCV3 = new CANNON.Vec3();
-            this.tempCQuaternion = new CANNON.Quaternion();
+            this.tempCV3 = new OIMO.Vec3();
+            this.tempCQuaternion = new OIMO.Quat();
         }
-        OnInit() {
-            this.data = JSON.parse(this.userData);
+        onSerialization(data) {
+            this.data = JSON.parse(data);
+        }
+        onInit() {
             if (this.mBody == null) {
-                let op = {};
-                op.mass = this.data.mass;
-                op.type = this.data.type;
-                op.linearDamping = 0.5;
-                op.material = new CANNON.Material();
-                op.material.restitution = 0;
-                op.material.friction = 0;
-                this.mBody = new CANNON.Body(op);
-                if (this.mBody.type != CANNON.Body.DYNAMIC) {
-                    this.mBody.collisionResponse = true;
+                this.tempCV3.set(this.sprite3d.transform.position.x, this.sprite3d.transform.position.y, this.sprite3d.transform.position.z);
+                this.tempCQuaternion.set(this.sprite3d.transform.rotation.x, this.sprite3d.transform.rotation.y, this.sprite3d.transform.rotation.z, this.sprite3d.transform.rotation.w);
+                this.mBody = new OIMO.RigidBody(this.tempCV3, this.tempCQuaternion);
+                if (this.data.type == 1) {
+                    this.mBody.type = OIMO.BODY_DYNAMIC;
+                }
+                if (this.data.type == 2) {
+                    this.mBody.isStatic = true;
+                    this.mBody.type = OIMO.BODY_STATIC;
+                }
+                if (this.data.type == 4) {
+                    this.mBody.type = OIMO.BODY_STATIC;
+                    this.mBody.isKinematic = true;
                 }
                 for (let index = 0; index < this.data.shapes.length; index++) {
                     const element = this.data.shapes[index];
-                    if (element.type == CANNON.Shape.types.BOX) {
+                    if (element.type == 4) {
                         let boxData = element;
-                        let size = new CANNON.Vec3();
                         let worldLossyScale = this.sprite3d.transform.getWorldLossyScale();
-                        size.x = boxData.size.x * 0.5 * worldLossyScale.x;
-                        size.y = boxData.size.y * 0.5 * worldLossyScale.y;
-                        size.z = boxData.size.z * 0.5 * worldLossyScale.z;
-                        let offset = new CANNON.Vec3();
-                        let box = new CANNON.Box(size);
-                        this.Body.addShape(box, offset);
+                        let cfg = new OIMO.ShapeConfig();
+                        cfg.relativeRotation = new OIMO.Mat33();
+                        cfg.relativePosition = new OIMO.Vec3();
+                        let box = new OIMO.Box(cfg, boxData.size.x * worldLossyScale.x, boxData.size.y * worldLossyScale.y, boxData.size.z * worldLossyScale.z);
+                        this.Body.addShape(box);
+                        this.Body.setupMass(this.mBody.type, true);
                     }
                 }
                 if (this.show) {
                     this.physicalCtrl.addBody(this);
                 }
+                this.Body.setupMass(this.mBody.type, false);
                 this.updatePhysicsTransformFromRender(true);
             }
+            console.log(this.sprite3d.name, this.Body.numShapes);
+        }
+        onAwake() {
+            super.onAwake();
         }
         updatePhysicsTransformFromRender(force = false) {
             super.updatePhysicsTransformFromRender(force);
             if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDPOSITION)) {
                 this.tempCV3.set(this.sprite3d.transform.position.x, this.sprite3d.transform.position.y, this.sprite3d.transform.position.z);
-                let p = this.mBody.velocity;
-                p.set(this.mBody.initVelocity.x, this.mBody.initVelocity.y, this.mBody.initVelocity.z);
-                this.mBody.velocity = p;
-                this.mBody.position = this.tempCV3;
+                this.mBody.position.set(this.tempCV3.x, this.tempCV3.y, this.tempCV3.z);
                 this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDPOSITION);
+                this.Body.setupMass(this.Body.type, false);
             }
             if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDQUATERNION)) {
                 this.tempCQuaternion.set(this.sprite3d.transform.rotation.x, this.sprite3d.transform.rotation.y, this.sprite3d.transform.rotation.z, this.sprite3d.transform.rotation.w);
-                this.mBody.quaternion = this.tempCQuaternion;
+                this.mBody.quaternion.set(this.tempCQuaternion.x, this.tempCQuaternion.y, this.tempCQuaternion.z, this.tempCQuaternion.w);
                 this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDQUATERNION);
+                this.Body.setupMass(this.Body.type, false);
             }
             if (force || this.tranFlag.Has(Transform3DFlag.TRANSFORM_WORLDSCALE)) {
                 this.setShapeScale(this.sprite3d.transform.getWorldLossyScale());
                 this.tranFlag.Remove(Transform3DFlag.TRANSFORM_WORLDSCALE);
+                this.Body.setupMass(this.Body.type, false);
             }
-            this.mBody.updateMassProperties();
-            this.mBody.updateSolveMassProperties();
         }
         updateTransformPhysicsComponent() {
             if (this.isValid) {
-                if (this.Body.type == CANNON.Body.DYNAMIC) {
+                if (this.Body.isDynamic) {
                     GameUtils.SetV4(this.tempQuaternion, this.Body.quaternion);
                     this.sprite3d.transform.rotation = this.tempQuaternion;
                     this.tempV3.setValue(this.Body.position.x, this.Body.position.y, this.sprite3d.transform.position.z);
@@ -202,23 +203,24 @@
             }
         }
         setShapeScale(scale) {
-            for (let index = 0; index < this.data.shapes.length; index++) {
-                const element = this.data.shapes[index];
-                if (element.type == CANNON.Shape.types.BOX) {
-                    let boxData = element;
-                    let size = new CANNON.Vec3();
-                    size.set(boxData.size.x * scale.x * 0.5, boxData.size.y * scale.y * 0.5, boxData.size.z * scale.z * 0.5);
-                    let offset = new CANNON.Vec3();
-                    offset.x = boxData.size.x * scale.x * (boxData.center.x / boxData.size.x);
-                    offset.y = boxData.size.y * scale.y * (boxData.center.y / boxData.size.y);
-                    offset.z = boxData.size.z * scale.z * (boxData.center.z / boxData.size.z);
-                    offset.x *= -1;
-                    let box = this.Body.shapes[index];
-                    box.halfExtents = size;
-                    this.Body.shapeOffsets[index] = offset;
+            let shape = this.Body.shapes;
+            let i = 0;
+            while (shape) {
+                const element = this.data.shapes[i];
+                if (element != null) {
+                    if (element.type == 4) {
+                        let boxData = element;
+                        let box = shape;
+                        box.width = boxData.size.x * scale.x;
+                        box.height = boxData.size.y * scale.y;
+                        box.depth = boxData.size.z * scale.z;
+                        let offset = new OIMO.Vec3(-1 * (boxData.size.x * scale.x * (boxData.center.x / boxData.size.x)), boxData.size.y * scale.y * (boxData.center.y / boxData.size.y), boxData.size.z * scale.z * (boxData.center.z / boxData.size.z));
+                        box.relativePosition = offset;
+                    }
                 }
+                i++;
+                shape = shape.next;
             }
-            this.Body.updateBoundingRadius();
         }
     }
 
@@ -230,7 +232,7 @@
         static Init() {
             Reg("YK.Body", Body);
         }
-        RegClass(name, cls) {
+        static RegClass(name, cls) {
             Reg(name, cls);
         }
         initComs(go, info) {
@@ -244,7 +246,7 @@
             else {
                 ComMgr.initCom(go, info.coms);
                 for (let index = 0; index < info.childs.length; index++) {
-                    const element = info.childs[index];
+                    let element = info.childs[index];
                     let child = go.getChildAt(element.instanceID);
                     if (child != null) {
                         this.addCom(child, element);
@@ -255,8 +257,13 @@
         static initCom(go, comInfos) {
             for (let index = 0; index < comInfos.length; index++) {
                 let comInfo = comInfos[index];
-                let com = go.addComponent(Laya.ClassUtils.getClass(comInfo.name));
-                com.userData = comInfo.data;
+                let cls = Laya.ClassUtils.getClass(comInfo.name);
+                if (cls == null) {
+                    console.error("无法绑定组件检查是否注册 组件名称：" + comInfo.name);
+                    continue;
+                }
+                let com = go.addComponent(cls);
+                com.onSerialization(comInfo.data);
             }
         }
         initDatas(go, info) {
@@ -278,10 +285,8 @@
             for (let index = 0; index < comInfos.length; index++) {
                 let comInfo = comInfos[index];
                 let cls = Laya.ClassUtils.getClass(comInfo.name);
-                let com = new cls();
-                com.userData = comInfo.data;
-                go.addComponentIntance(com);
-                com.OnInit();
+                let com = go.getComponent(cls);
+                com.onInit();
             }
         }
     }
@@ -299,23 +304,28 @@
         addBody(com) {
             let index = this.updateList.findIndex(a => a == com);
             if (index == -1 && com.Body) {
-                this.world.addBody(com.Body);
+                this.world.addRigidBody(com.Body);
                 this.updateList.push(com);
             }
         }
         removeBody(com) {
             if (com.Body) {
-                this.world.remove(com.Body);
+                this.world.removeRigidBody(com.Body);
                 let index = this.updateList.findIndex(a => a == com);
                 if (index != -1)
                     this.updateList.splice(index, 1);
             }
         }
         init() {
-            Laya.timer.frameLoop(1, this, this.update, null, true);
-            this.world = new CANNON.World();
-            this.world.gravity.set(0, -9.82, 0);
-            this.world.broadphase = new CANNON.NaiveBroadphase();
+            this.world = new OIMO.World({
+                timestep: 1 / 60,
+                iterations: 8,
+                broadphase: 2,
+                worldscale: 1,
+                random: true,
+                info: false,
+                gravity: [0, -10, 0]
+            });
             Laya.timer.frameLoop(1, this, this.update, null, true);
         }
         update() {
@@ -323,7 +333,7 @@
             for (let i = 0; i < this.updateToPyList.length; i++) {
                 this.updateToPyList.pop().updatePhysicsTransformFromRender();
             }
-            this.world.step(this.fixedTimeStep);
+            this.world.step();
             for (let i = 0; i < this.updateList.length; i++) {
                 this.updateList[i].updateTransformPhysicsComponent();
             }
@@ -359,15 +369,19 @@
     class GameMain {
         constructor() {
             this.isDown = false;
-            Laya.loader.create(["res/unitylib/Conventional/SampleScene.ls", "res/unitylib/Conventional/SampleScene.json"], Laya.Handler.create(this, (a) => {
+            Laya.loader.create(["res/unitylib/Conventional/SampleScene.ls",
+                "res/unitylib/Conventional/SampleScene.json",
+                "res/unitylib/Conventional/original.lh",
+                "res/unitylib/Conventional/original.json"
+            ], Laya.Handler.create(this, (a) => {
                 let scene = Laya.loader.getRes("res/unitylib/Conventional/SampleScene.ls");
                 Laya.stage.addChild(scene);
-                this.init();
                 let goInfo = new GameObjectInfo();
                 goInfo.name = scene.name;
                 goInfo.childs = Laya.loader.getRes("res/unitylib/Conventional/SampleScene.json").objInfos;
                 GameMgr.Inst.comMgr.initComs(scene, goInfo);
-                this.mRoot = scene.getChildByName("TestRoot");
+                this.mRoot = scene.getChildByName("Root");
+                this.mTest = scene.getChildByName("Root");
                 Laya.stage.on(Laya.Event.MOUSE_DOWN, this, (ev) => {
                     this.isDown = true;
                     this.brgX = ev.stageX;
@@ -384,11 +398,27 @@
                         this.mRoot.transform.localRotationEulerZ = (this.startR - da * 0.3) % 360;
                     }
                 });
+                this.init();
             }));
         }
+        static random(m, n) {
+            let num = Math.floor(Math.random() * (m - n) + n);
+            return num;
+        }
         init() {
+            let original = Laya.loader.getRes("res/unitylib/Conventional/original.lh");
+            for (let i = 0; i < GameMain.CUBENUM; i++) {
+                let gameInfo = Laya.loader.getRes("res/unitylib/Conventional/original.json");
+                let cube = original.clone();
+                this.mTest.addChild(cube);
+                cube.transform.localPositionY = GameMain.random(3, 15);
+                cube.transform.localPositionX = GameMain.random(-20, 20);
+                cube.transform.localPositionZ = GameMain.random(-20, 20);
+                GameMgr.Inst.comMgr.initComs(cube, gameInfo);
+            }
         }
     }
+    GameMain.CUBENUM = 200;
 
     class Main {
         constructor() {

@@ -1,4 +1,4 @@
-// v1.3.0
+// v1.3.1
 // publish 2.x 也是用这个文件，需要做兼容
 let isPublish2 = process.argv[2].includes("publish_wxgame.js") && process.argv[3].includes("--evn=publish2");
 // 获取Node插件和工作路径
@@ -23,7 +23,7 @@ const del = require(ideModuleDir + "del");
 const revCollector = require(ideModuleDir + 'gulp-rev-collector');
 let commandSuffix = ".cmd";
 const provider = "wx70d8aa25ec591f7a";
-const fullRemoteEngineList = ["laya.core.js", "laya.webgl.js", "laya.filter.js", "laya.ani.js", "laya.d3.js", "laya.html.js", "laya.particle.js", "laya.ui.js", "bytebuffer.js"];
+const fullRemoteEngineList = ["laya.core.js", "laya.webgl.js", "laya.filter.js", "laya.ani.js", "laya.d3.js", "laya.html.js", "laya.particle.js", "laya.ui.js", "laya.d3Plugin.js"];
 
 let copyLibsTask = ["copyLibsJsFile"];
 let packfiletask = ["packfile"];
@@ -246,7 +246,7 @@ gulp.task("pluginEngin_WX", ["optimizeOpen_WX"], function(cb) {
 				"provider": provider,
 				"path": "laya-libs"
 			}
-		};
+		}
 		gameJsonContent = JSON.stringify(conJson, null, 4);
 		fs.writeFileSync(gameJsonPath, gameJsonContent, "utf8");
 		resolve();

@@ -20,6 +20,7 @@ export class GameMgr {
         this.comMgr = new ComMgr();
         this.cannonPhysicalCtrl = new CannonPhysicalCtrl();
         this.cannonPhysicalCtrl.init();
+        Laya.UnlitMaterial
     }
 
 

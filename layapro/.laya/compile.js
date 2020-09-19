@@ -1,4 +1,4 @@
-// v1.2.0
+// v1.2.1
 //是否使用IDE自带的node环境和插件，设置false后，则使用自己环境(使用命令行方式执行)
 const useIDENode = process.argv[0].indexOf("LayaAir") > -1 ? true : false;
 const useCMDNode = process.argv[1].indexOf("layaair2-cmd") > -1 ? true : false;
@@ -33,10 +33,10 @@ gulp.task("compile", prevTasks, function () {
 	return rollup.rollup({
 		input: workSpaceDir + '/src/Main.ts',
 		onwarn:(waring,warn)=>{
-			if(waring.code == "CIRCULAR_DEPENDENCY"){
-				console.log("warnning Circular dependency:");
-				console.log(waring);
-			}
+			// if(waring.code == "CIRCULAR_DEPENDENCY"){
+			// 	console.log("warnning Circular dependency:");
+			// 	console.log(waring);
+			// }
 		},
 		treeshake: false, //建议忽略
 		plugins: [
@@ -57,7 +57,7 @@ gulp.task("compile", prevTasks, function () {
 				},
 				numWorkers:1,//Amount of workers to spawn. Defaults to the number of CPUs minus 1
 				sourcemap: false
-			})*/        
+			})*/
 		]
 	}).then(bundle => {
 		return bundle.write({
@@ -68,6 +68,6 @@ gulp.task("compile", prevTasks, function () {
 		});
 	}).catch(err=>{
 			console.log(err);
-		
+
 	})
 });

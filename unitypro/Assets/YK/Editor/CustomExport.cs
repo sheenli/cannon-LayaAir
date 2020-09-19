@@ -68,9 +68,9 @@ namespace LayaExport
                     var da = new JsonData();
                     da.objInfos.Add(j);
 //                    JSONObject.CreateStringObject()
-                    var x = JsonMapper.ToJson(da);
-                    var path = savePath.Substring(0, savePath.IndexOf("unitylib/", StringComparison.Ordinal) + 9)
-                               + "/" + da.objInfos[0].name + ".json";
+                    var x = JsonMapper.ToJson(j);
+                    
+                    var path = savePath + "/unitylib/Conventional/" + j.name + ".json";
                     File.WriteAllText(path, x);
                 }
             }

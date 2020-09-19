@@ -1,4 +1,4 @@
-// v1.6.0
+// v1.6.1
 //是否使用IDE自带的node环境和插件，设置false后，则使用自己环境(使用命令行方式执行)
 const useIDENode = process.argv[0].indexOf("LayaAir") > -1 ? true : false;
 const useCMDNode = process.argv[1].indexOf("layaair2-cmd") > -1 ? true : false;
@@ -62,7 +62,7 @@ const copyTasks = {
 	"qqgame": "copyPlatformFile_QQ",
 	"wxgame": "copyPlatformFile_WX",
 	"web": "copyLibsJsFile"
-};
+}
 const tasks = {
 	"biligame": "buildBiliProj",
 	"Alipaygame": "buildAlipayProj",
@@ -73,7 +73,7 @@ const tasks = {
 	"qqgame": "buildQQProj",
 	"wxgame": "buildWXProj",
 	"web": "packfile"
-};
+}
 
 if (!useOtherNode() && process.argv.length > 5 && process.argv[4] == "--config") {
 	platform = process.argv[5].replace(".json", "");
@@ -247,7 +247,7 @@ gulp.task("es6toes5", platformCopyTask, function() {
 		})) 
 		.pipe(gulp.dest(releaseDir));
 	}
-});
+})
 
 // 压缩json
 gulp.task("compressJson", ["es6toes5"], function () {
@@ -324,7 +324,8 @@ gulp.task("version2", ["version1"], function () {
 		let indexJSPath;
 		let versionCon = fs.readFileSync(versionPath, "utf8");
 		versionCon = JSON.parse(versionCon);
-		indexJSPath = releaseDir + "/" + versionCon["index.js"];
+		let indexJsStr = (versionCon && versionCon["index.js"]) ? versionCon["index.js"] :  "index.js";
+		indexJSPath = releaseDir + "/" + indexJsStr;
 		// 替换config.packfileFullValue中的路径
 		let packfileStr = JSON.stringify(config.packfileFullValue).replace(/\\\\/g, "/");
 		let tempPackfile = `${workSpaceDir}/.laya/configTemp.json`;

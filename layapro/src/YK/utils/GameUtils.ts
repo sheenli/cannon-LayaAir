@@ -1,11 +1,11 @@
 export class GameUtils {
-    static layaV32CannonV3(pos: Laya.Vector3) {
-        return new CANNON.Vec3(pos.x, pos.y, pos.z);
-    }
-
-    static layaQuaternion2CanQuaternion(q: Laya.Quaternion) {
-        return new CANNON.Quaternion(q.x, q.y, q.z, q.w);
-    }
+    // static layaV32CannonV3(pos: Laya.Vector3) {
+    //     return new CANNON.Vec3(pos.x, pos.y, pos.z);
+    // }
+    //
+    // static layaQuaternion2CanQuaternion(q: Laya.Quaternion) {
+    //     return new CANNON.Quaternion(q.x, q.y, q.z, q.w);
+    // }
 
     static SetV3(pos1, pos2) {
         pos1.x = pos2.x;

@@ -13,7 +13,7 @@ export class ComMgr {
         Reg("YK.Body", Body)
     }
 
-    RegClass(name,cls){
+    static RegClass(name,cls){
         Reg(name,cls);
     }
 
@@ -29,7 +29,7 @@ export class ComMgr {
         } else {
             ComMgr.initCom(go, info.coms);
             for (let index = 0; index < info.childs.length; index++) {
-                const element = info.childs[index];
+                let element = info.childs[index];
                 let child = go.getChildAt(element.instanceID) as Laya.Sprite3D;
                 if (child != null) {
                     this.addCom(child, element);
@@ -41,8 +41,13 @@ export class ComMgr {
     private static initCom(go: Laya.Sprite3D, comInfos: Array<ComInfo>) {
         for (let index = 0; index < comInfos.length; index++) {
             let comInfo = comInfos[index];
-            let com = go.addComponent(Laya.ClassUtils.getClass(comInfo.name)) as ICom;
-            com.userData = comInfo.data;
+            let cls = Laya.ClassUtils.getClass(comInfo.name);
+            if (cls == null) {
+                console.error("无法绑定组件检查是否注册 组件名称：" + comInfo.name);
+                continue;
+            }
+            let com = go.addComponent(cls) as ICom;
+            com.onSerialization(comInfo.data);
         }
 
     }
@@ -66,10 +71,8 @@ export class ComMgr {
         for (let index = 0; index < comInfos.length; index++) {
             let comInfo = comInfos[index];
             let cls = Laya.ClassUtils.getClass(comInfo.name);
-            let com = new cls();
-            com.userData = comInfo.data;
-            go.addComponentIntance(com);
-            com.OnInit();
+            let com = go.getComponent(cls);
+            com.onInit();
         }
 
     }

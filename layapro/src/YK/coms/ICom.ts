@@ -1,4 +1,4 @@
 export interface ICom {
-    userData: string;
-    OnInit();
+    onSerialization(data:string);
+    onInit();
 }
